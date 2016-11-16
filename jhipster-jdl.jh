@@ -1,0 +1,44 @@
+entity InSensor {
+	name String,
+    pinNumber Integer required
+}
+
+entity OutSwitch {
+	name String,
+    pinNumber Integer required
+}
+
+
+entity Plant {
+	id Integer required,
+    name String required ,
+    minHumidity Double required,
+}
+
+entity GreenHouse {
+    
+}
+
+relationship OneToOne {
+	Plant{humidity} to InSensor
+}
+
+relationship OneToOne {
+	GreenHouse{humidity} to InSensor
+}
+
+relationship OneToOne {
+	GreenHouse{temperature} to InSensor
+}
+
+
+// defining multiple OneToMany relationships with comments
+relationship ManyToMany {
+	GreenHouse{plants} to Plant,
+    GreenHouse{pumps} to OutSwitch,
+    GreenHouse{lights} to OutSwitch,
+    GreenHouse{fans} to OutSwitch
+}
+
+
+angularSuffix * with mySuffix
