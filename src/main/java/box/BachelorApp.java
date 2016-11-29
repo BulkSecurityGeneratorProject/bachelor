@@ -72,7 +72,7 @@ public class BachelorApp {
         settings.setEndLight(new Integer[]{20, 0});
 //        greenHouse = greenHouseRepository.findOneWithEagerRelationships(0);
         manager = new GreenHouseManager(settings, greenHouse);
-        
+        log.error("manager started");
         manager.start();
 
     }

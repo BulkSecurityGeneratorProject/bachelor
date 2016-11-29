@@ -77,7 +77,7 @@ public class InSensor implements Serializable {
         //TMP SOLUTION
        // pin = GpioFactory.getInstance().provisionAnalogInputPin(RaspiPin.getPinByAddress(17));
         this.pinNumber = pinNumber;
-        System.err.println(pin.getPin().getAddress());
+       // System.err.println(pin.getPin().getAddress());
     }
     
     public double getSensorValue(){

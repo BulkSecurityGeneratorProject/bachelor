@@ -18,7 +18,7 @@ public class GreenHouseManager extends Thread {
 
     private ProfileSettings settings;
     private GreenHouse greenHouse;
-    private static final Logger log = LoggerFactory.getLogger(BachelorApp.class);
+//    private static final Logger log = LoggerFactory.getLogger(BachelorApp.class);
 
     public GreenHouseManager(ProfileSettings settings, GreenHouse greenHouse) {
         this.settings = settings;
@@ -76,7 +76,7 @@ public class GreenHouseManager extends Thread {
     @Override
     public void run() {
         while (true) {
-            log.error("manager started..............................................................................dasdasdsada:w");
+//            log.error("manager started..............................................................................dasdasdsada:w");
             manageHumidity();
             managePumps();
             manageLights();
