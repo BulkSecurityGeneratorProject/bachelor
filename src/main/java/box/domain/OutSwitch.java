@@ -42,7 +42,7 @@ public class OutSwitch implements Serializable {
     @Transient
     @JsonSerialize
     @JsonDeserialize
-    private GpioPinDigitalOutput pin;
+    private GpioPinDigitalOutput pin = null;
 
     public Long getId() {
         return id;
@@ -83,12 +83,21 @@ public class OutSwitch implements Serializable {
     }
 
     public void setPinNumber(Integer pinNumber) {
-        pin = GpioFactory.getInstance().provisionDigitalOutputPin(RaspiPinTools.getEnumFromInt(pinNumber), "name", PinState.HIGH);
-
+        if (pin == null) {
+            pin = GpioFactory.getInstance().provisionDigitalOutputPin(RaspiPinTools.getEnumFromInt(pinNumber), "name", PinState.HIGH);
+        }
         pin.setShutdownOptions(true, PinState.LOW);
         this.pinNumber = pinNumber;
     }
 
+    public void turnOn(){
+        pin.setState(true);
+    }
+    
+    public void turnOff(){
+        pin.setState(false);
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) {

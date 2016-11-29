@@ -79,6 +79,11 @@ public class InSensor implements Serializable {
         this.pinNumber = pinNumber;
         System.err.println(pin.getPin().getAddress());
     }
+    
+    public double getSensorValue(){
+//        return pin.getValue();
+          return 0.2;
+    }
 
     @Override
     public boolean equals(Object o) {

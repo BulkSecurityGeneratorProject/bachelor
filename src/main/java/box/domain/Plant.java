@@ -26,9 +26,6 @@ public class Plant implements Serializable {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @NotNull
-    @Column(name = "min_humidity", nullable = false)
-    private Double minHumidity;
 
     @OneToOne
     @JoinColumn(unique = true)
@@ -55,18 +52,6 @@ public class Plant implements Serializable {
         this.name = name;
     }
 
-    public Double getMinHumidity() {
-        return minHumidity;
-    }
-
-    public Plant minHumidity(Double minHumidity) {
-        this.minHumidity = minHumidity;
-        return this;
-    }
-
-    public void setMinHumidity(Double minHumidity) {
-        this.minHumidity = minHumidity;
-    }
 
     public InSensor getHumidity() {
         return humidity;
@@ -90,7 +75,7 @@ public class Plant implements Serializable {
             return false;
         }
         Plant plant = (Plant) o;
-        if(plant.id == null || id == null) {
+        if (plant.id == null || id == null) {
             return false;
         }
         return Objects.equals(id, plant.id);
@@ -103,10 +88,9 @@ public class Plant implements Serializable {
 
     @Override
     public String toString() {
-        return "Plant{" +
-            "id=" + id +
-            ", name='" + name + "'" +
-            ", minHumidity='" + minHumidity + "'" +
-            '}';
+        return "Plant{"
+                + "id=" + id
+                + ", name='" + name + "'"
+                + '}';
     }
 }

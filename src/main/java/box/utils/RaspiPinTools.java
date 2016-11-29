@@ -15,6 +15,7 @@ import com.pi4j.io.gpio.RaspiPin;
 public class RaspiPinTools {
 
     static public Pin getEnumFromInt(int pinNumber) {
+        
         switch (pinNumber) {
             case 0:
                 return RaspiPin.GPIO_00;

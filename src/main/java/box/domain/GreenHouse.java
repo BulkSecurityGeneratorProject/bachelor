@@ -26,6 +26,18 @@ public class GreenHouse implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private InSensor humidity;
+    
+        @OneToOne
+    @JoinColumn(unique = true)
+    private OutSwitch humidifier;
+
+    public OutSwitch getHumidifier() {
+        return humidifier;
+    }
+
+    public void setHumidifier(OutSwitch humidifier) {
+        this.humidifier = humidifier;
+    }
 
     @OneToOne
     @JoinColumn(unique = true)
@@ -118,6 +130,11 @@ public class GreenHouse implements Serializable {
 
     public Set<OutSwitch> getPumps() {
         return pumps;
+    }
+    
+    public GreenHouse humidifier(OutSwitch humidifier){
+        this.humidifier = humidifier;
+        return this;
     }
 
     public GreenHouse pumps(Set<OutSwitch> outSwitches) {
