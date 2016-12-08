@@ -1,0 +1,58 @@
+<div>
+    <h2 data-translate="bachelorApp.inSensor.home.title">In Sensors</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="in-sensormySuffix.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="bachelorApp.inSensor.home.createLabel">
+                        Create new In Sensor
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="bachelorApp.inSensor.name">Name</span></th>
+                    <th><span data-translate="bachelorApp.inSensor.pinNumber">Pin Number</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="inSensor in vm.inSensors track by inSensor.id">
+                    <td><a ui-sref="in-sensormySuffix-detail({id:inSensor.id})">{{inSensor.id}}</a></td>
+                    <td>{{inSensor.name}}</td>
+                    <td>{{inSensor.pinNumber}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="in-sensormySuffix-detail({id:inSensor.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="in-sensormySuffix.edit({id:inSensor.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="in-sensormySuffix.delete({id:inSensor.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

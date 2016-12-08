@@ -1,0 +1,90 @@
+<div>
+    <h2 data-translate="bachelorApp.greenHouse.home.title">Green Houses</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="green-housemySuffix.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="bachelorApp.greenHouse.home.createLabel">
+                        Create new Green House
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="bachelorApp.greenHouse.humidity">Humidity</span></th>
+                    <th><span data-translate="bachelorApp.greenHouse.temperature">Temperature</span></th>
+                    <th><span data-translate="bachelorApp.greenHouse.humidifier">Humidifier</span></th>
+                    <th><span data-translate="bachelorApp.greenHouse.plants">Plants</span></th>
+                    <th><span data-translate="bachelorApp.greenHouse.pumps">Pumps</span></th>
+                    <th><span data-translate="bachelorApp.greenHouse.lights">Lights</span></th>
+                    <th><span data-translate="bachelorApp.greenHouse.fans">Fans</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="greenHouse in vm.greenHouses track by greenHouse.id">
+                    <td><a ui-sref="green-housemySuffix-detail({id:greenHouse.id})">{{greenHouse.id}}</a></td>
+                    <td>
+                        <a ui-sref="in-sensormySuffix-detail({id:greenHouse.humidity.id})">{{greenHouse.humidity.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="in-sensormySuffix-detail({id:greenHouse.temperature.id})">{{greenHouse.temperature.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="out-switchmySuffix-detail({id:greenHouse.humidifier.id})">{{greenHouse.humidifier.id}}</a>
+                    </td>
+                    <td>
+                        <span ng-repeat="plants in greenHouse.plants">
+                            <a class="form-control-static" ui-sref="plantmySuffix-detail({id: plants.id})">{{plants.id}}</a>{{$last ? '' : ', '}}
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-repeat="pumps in greenHouse.pumps">
+                            <a class="form-control-static" ui-sref="out-switchmySuffix-detail({id: pumps.id})">{{pumps.id}}</a>{{$last ? '' : ', '}}
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-repeat="lights in greenHouse.lights">
+                            <a class="form-control-static" ui-sref="out-switchmySuffix-detail({id: lights.id})">{{lights.id}}</a>{{$last ? '' : ', '}}
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-repeat="fans in greenHouse.fans">
+                            <a class="form-control-static" ui-sref="out-switchmySuffix-detail({id: fans.id})">{{fans.id}}</a>{{$last ? '' : ', '}}
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="green-housemySuffix-detail({id:greenHouse.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="green-housemySuffix.edit({id:greenHouse.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="green-housemySuffix.delete({id:greenHouse.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

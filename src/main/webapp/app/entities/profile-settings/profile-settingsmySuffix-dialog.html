@@ -1,0 +1,126 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myProfileSettingsLabel" data-translate="bachelorApp.profileSettings.home.createOrEditLabel">Create or edit a Profile Settings</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.profileSettings.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.profileSettings.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="bachelorApp.profileSettings.maxGroundHumidity" for="field_maxGroundHumidity">Max Ground Humidity</label>
+            <input type="number" class="form-control" name="maxGroundHumidity" id="field_maxGroundHumidity"
+                    ng-model="vm.profileSettings.maxGroundHumidity"
+                    required />
+            <div ng-show="editForm.maxGroundHumidity.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.maxGroundHumidity.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.maxGroundHumidity.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="bachelorApp.profileSettings.minGrounHumidity" for="field_minGrounHumidity">Min Groun Humidity</label>
+            <input type="number" class="form-control" name="minGrounHumidity" id="field_minGrounHumidity"
+                    ng-model="vm.profileSettings.minGrounHumidity"
+                    required />
+            <div ng-show="editForm.minGrounHumidity.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.minGrounHumidity.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.minGrounHumidity.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="bachelorApp.profileSettings.minHumidity" for="field_minHumidity">Min Humidity</label>
+            <input type="number" class="form-control" name="minHumidity" id="field_minHumidity"
+                    ng-model="vm.profileSettings.minHumidity"
+                    required />
+            <div ng-show="editForm.minHumidity.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.minHumidity.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.minHumidity.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="bachelorApp.profileSettings.maxHumidity" for="field_maxHumidity">Max Humidity</label>
+            <input type="number" class="form-control" name="maxHumidity" id="field_maxHumidity"
+                    ng-model="vm.profileSettings.maxHumidity"
+                    required />
+            <div ng-show="editForm.maxHumidity.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.maxHumidity.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.maxHumidity.$error.number" data-translate="entity.validation.number">
+                    This field should be a number.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="bachelorApp.profileSettings.maxTemperature" for="field_maxTemperature">Max Temperature</label>
+            <input type="number" class="form-control" name="maxTemperature" id="field_maxTemperature"
+                    ng-model="vm.profileSettings.maxTemperature"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="bachelorApp.profileSettings.minTemperature" for="field_minTemperature">Min Temperature</label>
+            <input type="number" class="form-control" name="minTemperature" id="field_minTemperature"
+                    ng-model="vm.profileSettings.minTemperature"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="bachelorApp.profileSettings.startHour" for="field_startHour">Start Hour</label>
+            <input type="number" class="form-control" name="startHour" id="field_startHour"
+                    ng-model="vm.profileSettings.startHour"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="bachelorApp.profileSettings.startMinute" for="field_startMinute">Start Minute</label>
+            <input type="number" class="form-control" name="startMinute" id="field_startMinute"
+                    ng-model="vm.profileSettings.startMinute"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="bachelorApp.profileSettings.endMinute" for="field_endMinute">End Minute</label>
+            <input type="number" class="form-control" name="endMinute" id="field_endMinute"
+                    ng-model="vm.profileSettings.endMinute"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="bachelorApp.profileSettings.endHour" for="field_endHour">End Hour</label>
+            <input type="number" class="form-control" name="endHour" id="field_endHour"
+                    ng-model="vm.profileSettings.endHour"
+                     />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

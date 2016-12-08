@@ -1,0 +1,74 @@
+<div>
+    <h2 data-translate="bachelorApp.profileSettings.home.title">Profile Settings</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="profile-settingsmySuffix.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="bachelorApp.profileSettings.home.createLabel">
+                        Create new Profile Settings
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="bachelorApp.profileSettings.maxGroundHumidity">Max Ground Humidity</span></th>
+                    <th><span data-translate="bachelorApp.profileSettings.minGrounHumidity">Min Groun Humidity</span></th>
+                    <th><span data-translate="bachelorApp.profileSettings.minHumidity">Min Humidity</span></th>
+                    <th><span data-translate="bachelorApp.profileSettings.maxHumidity">Max Humidity</span></th>
+                    <th><span data-translate="bachelorApp.profileSettings.maxTemperature">Max Temperature</span></th>
+                    <th><span data-translate="bachelorApp.profileSettings.minTemperature">Min Temperature</span></th>
+                    <th><span data-translate="bachelorApp.profileSettings.startHour">Start Hour</span></th>
+                    <th><span data-translate="bachelorApp.profileSettings.startMinute">Start Minute</span></th>
+                    <th><span data-translate="bachelorApp.profileSettings.endMinute">End Minute</span></th>
+                    <th><span data-translate="bachelorApp.profileSettings.endHour">End Hour</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="profileSettings in vm.profileSettings track by profileSettings.id">
+                    <td><a ui-sref="profile-settingsmySuffix-detail({id:profileSettings.id})">{{profileSettings.id}}</a></td>
+                    <td>{{profileSettings.maxGroundHumidity}}</td>
+                    <td>{{profileSettings.minGrounHumidity}}</td>
+                    <td>{{profileSettings.minHumidity}}</td>
+                    <td>{{profileSettings.maxHumidity}}</td>
+                    <td>{{profileSettings.maxTemperature}}</td>
+                    <td>{{profileSettings.minTemperature}}</td>
+                    <td>{{profileSettings.startHour}}</td>
+                    <td>{{profileSettings.startMinute}}</td>
+                    <td>{{profileSettings.endMinute}}</td>
+                    <td>{{profileSettings.endHour}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="profile-settingsmySuffix-detail({id:profileSettings.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="profile-settingsmySuffix.edit({id:profileSettings.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="profile-settingsmySuffix.delete({id:profileSettings.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-xs hidden-sm" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

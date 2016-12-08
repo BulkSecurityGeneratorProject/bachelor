@@ -1,0 +1,60 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myGreenHouseLabel" data-translate="bachelorApp.greenHouse.home.createOrEditLabel">Create or edit a Green House</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.greenHouse.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.greenHouse.id" readonly />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="bachelorApp.greenHouse.humidity" for="field_humidity">Humidity</label>
+            <select class="form-control" id="field_humidity" name="humidity" ng-model="vm.greenHouse.humidity" ng-options="inSensor as inSensor.id for inSensor in vm.humidities | orderBy:'id' track by inSensor.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="bachelorApp.greenHouse.temperature" for="field_temperature">Temperature</label>
+            <select class="form-control" id="field_temperature" name="temperature" ng-model="vm.greenHouse.temperature" ng-options="inSensor as inSensor.id for inSensor in vm.temperatures | orderBy:'id' track by inSensor.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="bachelorApp.greenHouse.humidifier" for="field_humidifier">Humidifier</label>
+            <select class="form-control" id="field_humidifier" name="humidifier" ng-model="vm.greenHouse.humidifier" ng-options="outSwitch as outSwitch.id for outSwitch in vm.humidifiers | orderBy:'id' track by outSwitch.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="bachelorApp.greenHouse.plants" for="field_plants">Plants</label>
+            <select class="form-control" id="field_plants" multiple name="plants" ng-model="vm.greenHouse.plants" ng-options="plant as plant.id for plant in vm.plants track by plant.id"></select>
+        </div>
+        <div class="form-group">
+            <label data-translate="bachelorApp.greenHouse.pumps" for="field_pumps">Pumps</label>
+            <select class="form-control" id="field_pumps" multiple name="pumps" ng-model="vm.greenHouse.pumps" ng-options="outSwitch as outSwitch.id for outSwitch in vm.outswitches track by outSwitch.id"></select>
+        </div>
+        <div class="form-group">
+            <label data-translate="bachelorApp.greenHouse.lights" for="field_lights">Lights</label>
+            <select class="form-control" id="field_lights" multiple name="lights" ng-model="vm.greenHouse.lights" ng-options="outSwitch as outSwitch.id for outSwitch in vm.outswitches track by outSwitch.id"></select>
+        </div>
+        <div class="form-group">
+            <label data-translate="bachelorApp.greenHouse.fans" for="field_fans">Fans</label>
+            <select class="form-control" id="field_fans" multiple name="fans" ng-model="vm.greenHouse.fans" ng-options="outSwitch as outSwitch.id for outSwitch in vm.outswitches track by outSwitch.id"></select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

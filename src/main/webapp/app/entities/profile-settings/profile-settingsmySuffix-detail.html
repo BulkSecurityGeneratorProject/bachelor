@@ -1,0 +1,59 @@
+
+<div>
+    <h2><span data-translate="bachelorApp.profileSettings.detail.title">Profile Settings</span> {{vm.profileSettings.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="bachelorApp.profileSettings.maxGroundHumidity">Max Ground Humidity</span></dt>
+        <dd>
+            <span>{{vm.profileSettings.maxGroundHumidity}}</span>
+        </dd>
+        <dt><span data-translate="bachelorApp.profileSettings.minGrounHumidity">Min Groun Humidity</span></dt>
+        <dd>
+            <span>{{vm.profileSettings.minGrounHumidity}}</span>
+        </dd>
+        <dt><span data-translate="bachelorApp.profileSettings.minHumidity">Min Humidity</span></dt>
+        <dd>
+            <span>{{vm.profileSettings.minHumidity}}</span>
+        </dd>
+        <dt><span data-translate="bachelorApp.profileSettings.maxHumidity">Max Humidity</span></dt>
+        <dd>
+            <span>{{vm.profileSettings.maxHumidity}}</span>
+        </dd>
+        <dt><span data-translate="bachelorApp.profileSettings.maxTemperature">Max Temperature</span></dt>
+        <dd>
+            <span>{{vm.profileSettings.maxTemperature}}</span>
+        </dd>
+        <dt><span data-translate="bachelorApp.profileSettings.minTemperature">Min Temperature</span></dt>
+        <dd>
+            <span>{{vm.profileSettings.minTemperature}}</span>
+        </dd>
+        <dt><span data-translate="bachelorApp.profileSettings.startHour">Start Hour</span></dt>
+        <dd>
+            <span>{{vm.profileSettings.startHour}}</span>
+        </dd>
+        <dt><span data-translate="bachelorApp.profileSettings.startMinute">Start Minute</span></dt>
+        <dd>
+            <span>{{vm.profileSettings.startMinute}}</span>
+        </dd>
+        <dt><span data-translate="bachelorApp.profileSettings.endMinute">End Minute</span></dt>
+        <dd>
+            <span>{{vm.profileSettings.endMinute}}</span>
+        </dd>
+        <dt><span data-translate="bachelorApp.profileSettings.endHour">End Hour</span></dt>
+        <dd>
+            <span>{{vm.profileSettings.endHour}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="profile-settingsmySuffix-detail.edit({id:vm.profileSettings.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

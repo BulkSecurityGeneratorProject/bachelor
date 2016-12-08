@@ -1,0 +1,55 @@
+
+<div>
+    <h2><span data-translate="bachelorApp.greenHouse.detail.title">Green House</span> {{vm.greenHouse.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="bachelorApp.greenHouse.humidity">Humidity</span></dt>
+        <dd>
+            <a ui-sref="in-sensormySuffix-detail({id:vm.greenHouse.humidity.id})">{{vm.greenHouse.humidity.id}}</a>
+        </dd>
+        <dt><span data-translate="bachelorApp.greenHouse.temperature">Temperature</span></dt>
+        <dd>
+            <a ui-sref="in-sensormySuffix-detail({id:vm.greenHouse.temperature.id})">{{vm.greenHouse.temperature.id}}</a>
+        </dd>
+        <dt><span data-translate="bachelorApp.greenHouse.humidifier">Humidifier</span></dt>
+        <dd>
+            <a ui-sref="out-switchmySuffix-detail({id:vm.greenHouse.humidifier.id})">{{vm.greenHouse.humidifier.id}}</a>
+        </dd>
+        <dt><span data-translate="bachelorApp.greenHouse.plants">Plants</span></dt>
+        <dd>
+            <span ng-repeat="plants in vm.greenHouse.plants">
+                <a ui-sref="plantmySuffix-detail({id: plants.id})">{{plants.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span data-translate="bachelorApp.greenHouse.pumps">Pumps</span></dt>
+        <dd>
+            <span ng-repeat="pumps in vm.greenHouse.pumps">
+                <a ui-sref="out-switchmySuffix-detail({id: pumps.id})">{{pumps.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span data-translate="bachelorApp.greenHouse.lights">Lights</span></dt>
+        <dd>
+            <span ng-repeat="lights in vm.greenHouse.lights">
+                <a ui-sref="out-switchmySuffix-detail({id: lights.id})">{{lights.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span data-translate="bachelorApp.greenHouse.fans">Fans</span></dt>
+        <dd>
+            <span ng-repeat="fans in vm.greenHouse.fans">
+                <a ui-sref="out-switchmySuffix-detail({id: fans.id})">{{fans.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="green-housemySuffix-detail.edit({id:vm.greenHouse.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>
