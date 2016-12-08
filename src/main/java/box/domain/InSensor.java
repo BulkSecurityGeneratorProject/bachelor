@@ -1,10 +1,5 @@
 package box.domain;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.pi4j.io.gpio.GpioFactory;
-import com.pi4j.io.gpio.GpioPinAnalogInput;
-import com.pi4j.io.gpio.RaspiPin;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -12,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
-import javax.sound.midi.SysexMessage;
 
 /**
  * A InSensor.
@@ -35,14 +29,6 @@ public class InSensor implements Serializable {
     @Column(name = "pin_number", nullable = false)
     private Integer pinNumber;
 
-    
-    
-    @Transient
-    @JsonSerialize
-    @JsonDeserialize
-    private GpioPinAnalogInput pin;
-    
-    
     public Long getId() {
         return id;
     }
@@ -74,15 +60,7 @@ public class InSensor implements Serializable {
     }
 
     public void setPinNumber(Integer pinNumber) {
-        //TMP SOLUTION
-       // pin = GpioFactory.getInstance().provisionAnalogInputPin(RaspiPin.getPinByAddress(17));
         this.pinNumber = pinNumber;
-       // System.err.println(pin.getPin().getAddress());
-    }
-    
-    public double getSensorValue(){
-//        return pin.getValue();
-          return 0.2;
     }
 
     @Override
@@ -94,7 +72,7 @@ public class InSensor implements Serializable {
             return false;
         }
         InSensor inSensor = (InSensor) o;
-        if (inSensor.id == null || id == null) {
+        if(inSensor.id == null || id == null) {
             return false;
         }
         return Objects.equals(id, inSensor.id);
@@ -107,10 +85,10 @@ public class InSensor implements Serializable {
 
     @Override
     public String toString() {
-        return "InSensor{"
-                + "id=" + id
-                + ", name='" + name + "'"
-                + ", pinNumber='" + pinNumber + "'"
-                + '}';
+        return "InSensor{" +
+            "id=" + id +
+            ", name='" + name + "'" +
+            ", pinNumber='" + pinNumber + "'" +
+            '}';
     }
 }

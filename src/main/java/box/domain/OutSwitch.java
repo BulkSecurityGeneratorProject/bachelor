@@ -1,22 +1,12 @@
 package box.domain;
 
-import box.utils.RaspiPinTools;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
-import com.pi4j.io.gpio.GpioPin;
-import com.pi4j.io.gpio.RaspiPin;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
-import com.pi4j.io.gpio.GpioPinDigitalOutput;
-import com.pi4j.io.gpio.PinState;
-
-import com.pi4j.io.gpio.GpioFactory;
-import com.pi4j.io.gpio.GpioPinAnalogInput;
-import com.pi4j.io.gpio.RaspiPin;
 
 /**
  * A OutSwitch.
@@ -38,11 +28,6 @@ public class OutSwitch implements Serializable {
     @NotNull
     @Column(name = "pin_number", nullable = false)
     private Integer pinNumber;
-
-    @Transient
-    @JsonSerialize
-    @JsonDeserialize
-    private GpioPinDigitalOutput pin = null;
 
     public Long getId() {
         return id;
@@ -69,35 +54,15 @@ public class OutSwitch implements Serializable {
         return pinNumber;
     }
 
-    public GpioPinDigitalOutput getPin() {
-        return pin;
-    }
-
-    public void setPin(GpioPinDigitalOutput pin) {
-        this.pin = pin;
-    }
-
     public OutSwitch pinNumber(Integer pinNumber) {
         this.pinNumber = pinNumber;
         return this;
     }
 
     public void setPinNumber(Integer pinNumber) {
-        if (pin == null) {
-            pin = GpioFactory.getInstance().provisionDigitalOutputPin(RaspiPinTools.getEnumFromInt(pinNumber), "name", PinState.HIGH);
-        }
-        pin.setShutdownOptions(true, PinState.LOW);
         this.pinNumber = pinNumber;
     }
 
-    public void turnOn(){
-        pin.setState(true);
-    }
-    
-    public void turnOff(){
-        pin.setState(false);
-    }
-    
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -107,7 +72,7 @@ public class OutSwitch implements Serializable {
             return false;
         }
         OutSwitch outSwitch = (OutSwitch) o;
-        if (outSwitch.id == null || id == null) {
+        if(outSwitch.id == null || id == null) {
             return false;
         }
         return Objects.equals(id, outSwitch.id);
@@ -120,10 +85,10 @@ public class OutSwitch implements Serializable {
 
     @Override
     public String toString() {
-        return "OutSwitch{"
-                + "id=" + id
-                + ", name='" + name + "'"
-                + ", pinNumber='" + pinNumber + "'"
-                + '}';
+        return "OutSwitch{" +
+            "id=" + id +
+            ", name='" + name + "'" +
+            ", pinNumber='" + pinNumber + "'" +
+            '}';
     }
 }

@@ -26,22 +26,14 @@ public class GreenHouse implements Serializable {
     @OneToOne
     @JoinColumn(unique = true)
     private InSensor humidity;
-    
-        @OneToOne
-    @JoinColumn(unique = true)
-    private OutSwitch humidifier;
-
-    public OutSwitch getHumidifier() {
-        return humidifier;
-    }
-
-    public void setHumidifier(OutSwitch humidifier) {
-        this.humidifier = humidifier;
-    }
 
     @OneToOne
     @JoinColumn(unique = true)
     private InSensor temperature;
+
+    @OneToOne
+    @JoinColumn(unique = true)
+    private OutSwitch humidifier;
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -105,6 +97,19 @@ public class GreenHouse implements Serializable {
         this.temperature = inSensor;
     }
 
+    public OutSwitch getHumidifier() {
+        return humidifier;
+    }
+
+    public GreenHouse humidifier(OutSwitch outSwitch) {
+        this.humidifier = outSwitch;
+        return this;
+    }
+
+    public void setHumidifier(OutSwitch outSwitch) {
+        this.humidifier = outSwitch;
+    }
+
     public Set<Plant> getPlants() {
         return plants;
     }
@@ -130,11 +135,6 @@ public class GreenHouse implements Serializable {
 
     public Set<OutSwitch> getPumps() {
         return pumps;
-    }
-    
-    public GreenHouse humidifier(OutSwitch humidifier){
-        this.humidifier = humidifier;
-        return this;
     }
 
     public GreenHouse pumps(Set<OutSwitch> outSwitches) {
