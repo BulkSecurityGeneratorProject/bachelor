@@ -12,13 +12,33 @@ entity OutSwitch {
 entity Plant {
 	id Integer required,
     name String required ,
-    minHumidity Double required,
 }
 
+entity ProfileSettings{
+	maxGroundHumidity Double required,
+    minGrounHumidity Double required,
+    minHumidity Double required,
+    maxHumidity Double required,
+    maxTemperature Double,
+    minTemperature Double,
+    startHour Integer,
+    startMinute Integer,
+    endMinute Integer,
+    endHour Integer
+    
+}
+
+entity GreenHouseManager{
+
+}
 entity GreenHouse {
     
 }
 
+relationship OneToOne{
+	GreenHouseManager{settings} to ProfileSettings,
+    GreenHouseManager{greenHouse} to GreenHouse
+}
 relationship OneToOne {
 	Plant{humidity} to InSensor
 }
@@ -31,7 +51,9 @@ relationship OneToOne {
 	GreenHouse{temperature} to InSensor
 }
 
-
+relationship OneToOne{
+	GreenHouse{humidifier} to OutSwitch
+}
 // defining multiple OneToMany relationships with comments
 relationship ManyToMany {
 	GreenHouse{plants} to Plant,
