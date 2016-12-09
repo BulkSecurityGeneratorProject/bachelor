@@ -5,8 +5,8 @@
  */
 package box.utils;
 
-//import com.pi4j.io.gpio.Pin;
-//import com.pi4j.io.gpio.RaspiPin;
+import com.pi4j.io.gpio.Pin;
+import com.pi4j.io.gpio.RaspiPin;
 
 /**
  *
@@ -14,7 +14,7 @@ package box.utils;
  */
 public class RaspiPinTools {
 
-  /*  static public Pin getEnumFromInt(int pinNumber) {
+    static public Pin getEnumFromInt(int pinNumber) {
         
         switch (pinNumber) {
             case 0:
@@ -36,5 +36,5 @@ public class RaspiPinTools {
             default:
                 return null;
         }
-    }*/
+    }
 }

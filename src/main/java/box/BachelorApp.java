@@ -3,6 +3,9 @@ package box;
 import box.config.Constants;
 import box.config.DefaultProfileUtil;
 import box.config.JHipsterProperties;
+import box.domain.GreenHouse;
+import box.domain.GreenHouseManager;
+import box.domain.ProfileSettings;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,50 +29,61 @@ import java.util.Collection;
 @EnableConfigurationProperties({ JHipsterProperties.class, LiquibaseProperties.class })
 public class BachelorApp {
 
-    private static final Logger log = LoggerFactory.getLogger(BachelorApp.class);
+	private static final Logger log = LoggerFactory.getLogger(BachelorApp.class);
 
-    @Inject
-    private Environment env;
+	@Inject
+	private Environment env;
+	
+	// TODO: aftger adding entities to database take them from database and start thread 
+	private static GreenHouseManager manager;
 
-    /**
-     * Initializes bachelor.
-     * <p>
-     * Spring profiles can be configured with a program arguments --spring.profiles.active=your-active-profile
-     * <p>
-     * You can find more information on how profiles work with JHipster on <a href="http://jhipster.github.io/profiles/">http://jhipster.github.io/profiles/</a>.
-     */
-    @PostConstruct
-    public void initApplication() {
-        log.info("Running with Spring profile(s) : {}", Arrays.toString(env.getActiveProfiles()));
-        Collection<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
-        if (activeProfiles.contains(Constants.SPRING_PROFILE_DEVELOPMENT) && activeProfiles.contains(Constants.SPRING_PROFILE_PRODUCTION)) {
-            log.error("You have misconfigured your application! It should not run " +
-                "with both the 'dev' and 'prod' profiles at the same time.");
-        }
-        if (activeProfiles.contains(Constants.SPRING_PROFILE_DEVELOPMENT) && activeProfiles.contains(Constants.SPRING_PROFILE_CLOUD)) {
-            log.error("You have misconfigured your application! It should not" +
-                "run with both the 'dev' and 'cloud' profiles at the same time.");
-        }
-    }
 
-    /**
-     * Main method, used to run the application.
-     *
-     * @param args the command line arguments
-     * @throws UnknownHostException if the local host name could not be resolved into an address
-     */
-    public static void main(String[] args) throws UnknownHostException {
-        SpringApplication app = new SpringApplication(BachelorApp.class);
-        DefaultProfileUtil.addDefaultProfile(app);
-        Environment env = app.run(args).getEnvironment();
-        log.info("\n----------------------------------------------------------\n\t" +
-                "Application '{}' is running! Access URLs:\n\t" +
-                "Local: \t\thttp://localhost:{}\n\t" +
-                "External: \thttp://{}:{}\n----------------------------------------------------------",
-            env.getProperty("spring.application.name"),
-            env.getProperty("server.port"),
-            InetAddress.getLocalHost().getHostAddress(),
-            env.getProperty("server.port"));
 
-    }
+	/**
+	 * Initializes bachelor.
+	 * <p>
+	 * Spring profiles can be configured with a program arguments
+	 * --spring.profiles.active=your-active-profile
+	 * <p>
+	 * You can find more information on how profiles work with JHipster on
+	 * <a href=
+	 * "http://jhipster.github.io/profiles/">http://jhipster.github.io/profiles/</a>.
+	 */
+	@PostConstruct
+	public void initApplication() {
+		log.info("Running with Spring profile(s) : {}", Arrays.toString(env.getActiveProfiles()));
+		Collection<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
+		if (activeProfiles.contains(Constants.SPRING_PROFILE_DEVELOPMENT)
+				&& activeProfiles.contains(Constants.SPRING_PROFILE_PRODUCTION)) {
+			log.error("You have misconfigured your application! It should not run "
+					+ "with both the 'dev' and 'prod' profiles at the same time.");
+		}
+		if (activeProfiles.contains(Constants.SPRING_PROFILE_DEVELOPMENT)
+				&& activeProfiles.contains(Constants.SPRING_PROFILE_CLOUD)) {
+			log.error("You have misconfigured your application! It should not"
+					+ "run with both the 'dev' and 'cloud' profiles at the same time.");
+		}
+
+	}
+
+	/**
+	 * Main method, used to run the application.
+	 *
+	 * @param args
+	 *            the command line arguments
+	 * @throws UnknownHostException
+	 *             if the local host name could not be resolved into an address
+	 */
+	public static void main(String[] args) throws UnknownHostException {
+		SpringApplication app = new SpringApplication(BachelorApp.class);
+		DefaultProfileUtil.addDefaultProfile(app);
+		Environment env = app.run(args).getEnvironment();
+		log.info(
+				"\n----------------------------------------------------------\n\t"
+						+ "Application '{}' is running! Access URLs:\n\t" + "Local: \t\thttp://localhost:{}\n\t"
+						+ "External: \thttp://{}:{}\n----------------------------------------------------------",
+				env.getProperty("spring.application.name"), env.getProperty("server.port"),
+				InetAddress.getLocalHost().getHostAddress(), env.getProperty("server.port"));
+
+	}
 }
