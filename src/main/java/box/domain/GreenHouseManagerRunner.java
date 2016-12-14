@@ -12,13 +12,10 @@ public class GreenHouseManagerRunner extends Thread {
 	
 	@Inject
 	private GreenHouseManagerRepository greenHouseManagerRepository;
-	
-	private GreenHouseManager manager;
-	
-	public GreenHouseManagerRunner() {
-		//tmp hardcode
-		manager = greenHouseManagerRepository.findOne((long) 1011);
-	}
+
+	//tmp
+	private GreenHouseManager manager = greenHouseManagerRepository.findOne((long) 1011);
+
 	
 	 private void manageHumidity() {
 	        if (manager.getGreenHouse().getHumidity().getSensorValue() < manager.getSettings().getMinGrounHumidity()) {
