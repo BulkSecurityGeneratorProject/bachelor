@@ -5,7 +5,10 @@ import box.config.DefaultProfileUtil;
 import box.config.JHipsterProperties;
 import box.domain.GreenHouse;
 import box.domain.GreenHouseManager;
+import box.domain.GreenHouseManagerRunner;
 import box.domain.ProfileSettings;
+import box.repository.GreenHouseManagerRepository;
+import box.web.rest.GreenHouseManagerResource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,8 +37,7 @@ public class BachelorApp {
 	@Inject
 	private Environment env;
 	
-	// TODO: aftger adding entities to database take them from database and start thread 
-	private static GreenHouseManager manager;
+	private static GreenHouseManagerRunner runner;
 
 
 
@@ -63,6 +65,8 @@ public class BachelorApp {
 			log.error("You have misconfigured your application! It should not"
 					+ "run with both the 'dev' and 'cloud' profiles at the same time.");
 		}
+		runner = new GreenHouseManagerRunner();
+		runner.start();
 
 	}
 
