@@ -37,7 +37,7 @@ public class BachelorApp {
 	@Inject
 	private Environment env;
 	
-	private static GreenHouseManagerRunner runner;
+	//private static GreenHouseManagerRunner runner;
 
 
 
@@ -65,8 +65,8 @@ public class BachelorApp {
 			log.error("You have misconfigured your application! It should not"
 					+ "run with both the 'dev' and 'cloud' profiles at the same time.");
 		}
-		runner = new GreenHouseManagerRunner();
-		runner.start();
+		//runner = new GreenHouseManagerRunner();
+		//runner.start();
 
 	}
 
