@@ -404,6 +404,7 @@
         </repository>
     </repositories>
     <build>
+
         <defaultGoal>spring-boot:run</defaultGoal>
         <pluginManagement>
             <plugins>
