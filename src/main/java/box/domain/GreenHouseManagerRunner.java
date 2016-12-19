@@ -7,14 +7,14 @@ import org.springframework.stereotype.Component;
 
 import box.repository.GreenHouseManagerRepository;
 
-@Component
+//@Component
 public class GreenHouseManagerRunner extends Thread {
 	
 	@Inject
 	private GreenHouseManagerRepository greenHouseManagerRepository;
 
 	//tmp
-	private GreenHouseManager manager = greenHouseManagerRepository.findOne((long) 1011);
+	private static final GreenHouseManager manager = greenHouseManagerRepository.findOne((long) 1011);
 
 	
 	 private void manageHumidity() {
