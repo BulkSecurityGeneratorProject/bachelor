@@ -26,6 +26,8 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collection;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 @ComponentScan
 @EnableAutoConfiguration(exclude = { MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class })
@@ -37,8 +39,7 @@ public class BachelorApp {
 	@Inject
 	private Environment env;
 	
-	//private static GreenHouseManagerRunner runner;
-
+        
 
 
 	/**
@@ -65,9 +66,8 @@ public class BachelorApp {
 			log.error("You have misconfigured your application! It should not"
 					+ "run with both the 'dev' and 'cloud' profiles at the same time.");
 		}
-		//runner = new GreenHouseManagerRunner();
-		//runner.start();
-
+        ApplicationContext ctx = new AnnotationConfigApplicationContext(ApplicationWebXml.class);
+        GreenHouseManager manager  = ctx.getBean(GreenHouseManager.class);
 	}
 
 	/**
@@ -88,6 +88,7 @@ public class BachelorApp {
 						+ "External: \thttp://{}:{}\n----------------------------------------------------------",
 				env.getProperty("spring.application.name"), env.getProperty("server.port"),
 				InetAddress.getLocalHost().getHostAddress(), env.getProperty("server.port"));
+                
 
 	}
 }
