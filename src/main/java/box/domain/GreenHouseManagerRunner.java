@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
 
-@Configurable(preConstruction = true)
+
 public class GreenHouseManagerRunner extends Thread {
 
     @Autowired
@@ -19,6 +19,8 @@ public class GreenHouseManagerRunner extends Thread {
 
     private GreenHouseManager manager;
 
+
+    
     @PostConstruct
     public void initIt() {
         manager = greenHouseManagerRepository.findOne(1011L);
