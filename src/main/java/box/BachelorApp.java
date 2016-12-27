@@ -28,10 +28,12 @@ import java.util.Arrays;
 import java.util.Collection;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @ComponentScan
 @EnableAutoConfiguration(exclude = { MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class })
 @EnableConfigurationProperties({ JHipsterProperties.class, LiquibaseProperties.class })
+@EnableJpaRepositories()
 public class BachelorApp {
 
 	private static final Logger log = LoggerFactory.getLogger(BachelorApp.class);
