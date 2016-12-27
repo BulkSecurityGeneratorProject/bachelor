@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
  * Spring Data JPA repository for the GreenHouseManager entity.
  */
 @SuppressWarnings("unused")
-@Repository
 public interface GreenHouseManagerRepository extends JpaRepository<GreenHouseManager,Long> {
 
 }

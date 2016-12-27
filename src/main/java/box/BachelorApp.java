@@ -33,7 +33,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @ComponentScan
 @EnableAutoConfiguration(exclude = { MetricFilterAutoConfiguration.class, MetricRepositoryAutoConfiguration.class })
 @EnableConfigurationProperties({ JHipsterProperties.class, LiquibaseProperties.class })
-@EnableJpaRepositories()
+@EnableJpaRepositories("box.repository")
 public class BachelorApp {
 
 	private static final Logger log = LoggerFactory.getLogger(BachelorApp.class);
