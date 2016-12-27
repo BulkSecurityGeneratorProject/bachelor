@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class GreenHouseManagerRunner extends Thread {
 
     @Inject
-    private GreenHouseManagerRepository greenHouseManagerRepository;
+    private box.repository.GreenHouseManagerRepository greenHouseManagerRepository;
 
     private GreenHouseManager manager;
 
