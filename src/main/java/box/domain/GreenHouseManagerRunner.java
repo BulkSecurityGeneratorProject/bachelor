@@ -8,9 +8,10 @@ import org.springframework.stereotype.Component;
 import box.repository.GreenHouseManagerRepository;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
 
-@Component
+@Configurable(preConstruction = true)
 public class GreenHouseManagerRunner extends Thread {
 
     @Autowired
