@@ -7,13 +7,14 @@ import org.springframework.stereotype.Component;
 
 import box.repository.GreenHouseManagerRepository;
 import javax.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Component
 public class GreenHouseManagerRunner extends Thread {
 
-    @Inject
-    private box.repository.GreenHouseManagerRepository greenHouseManagerRepository;
+    @Autowired
+    private GreenHouseManagerRepository greenHouseManagerRepository;
 
     private GreenHouseManager manager;
 
