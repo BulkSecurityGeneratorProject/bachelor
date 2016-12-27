@@ -5,7 +5,7 @@ import box.config.DefaultProfileUtil;
 import box.config.JHipsterProperties;
 import box.domain.GreenHouse;
 import box.domain.GreenHouseManager;
-import box.service.GreenHouseManagerRunner;
+//import box.service.GreenHouseManagerRunner;
 import box.domain.ProfileSettings;
 import box.repository.GreenHouseManagerRepository;
 import box.web.rest.GreenHouseManagerResource;
@@ -69,7 +69,7 @@ public class BachelorApp {
 					+ "run with both the 'dev' and 'cloud' profiles at the same time.");
 		}
         ApplicationContext ctx = new AnnotationConfigApplicationContext(ApplicationWebXml.class);
-        GreenHouseManagerRunner manager  = ctx.getBean(GreenHouseManagerRunner.class);
+//        GreenHouseManagerRunner manager  = ctx.getBean(GreenHouseManagerRunner.class);
 	}
 
 	/**

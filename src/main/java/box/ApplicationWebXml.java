@@ -1,7 +1,6 @@
 package box;
 
 import box.config.DefaultProfileUtil;
-import box.service.GreenHouseManagerRunner;
 import box.repository.GreenHouseManagerRepository;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
@@ -13,10 +12,10 @@ import org.springframework.context.annotation.Bean;
  */
 public class ApplicationWebXml extends SpringBootServletInitializer {
 
-    @Bean
-    public GreenHouseManagerRunner greenHouseManagerRunner(){
-        return new GreenHouseManagerRunner();
-    }
+//    @Bean
+//    public GreenHouseManagerRunner greenHouseManagerRunner(){
+//        return new GreenHouseManagerRunner();
+//    }
     
 
     @Override
