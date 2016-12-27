@@ -42,7 +42,7 @@ public class BachelorApp {
 	@Inject
 	private Environment env;
 	
-        @Inject GreenHouseManagerServiceServiceImpl greenHouseManagerServiceServiceImpl;
+
 
 
 	/**
