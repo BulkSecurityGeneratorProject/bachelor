@@ -8,6 +8,7 @@ import box.domain.GreenHouseManager;
 //import box.service.GreenHouseManagerRunner;
 import box.domain.ProfileSettings;
 import box.repository.GreenHouseManagerRepository;
+import box.service.impl.GreenHouseManagerServiceServiceImpl;
 import box.web.rest.GreenHouseManagerResource;
 
 import org.slf4j.Logger;
@@ -41,7 +42,7 @@ public class BachelorApp {
 	@Inject
 	private Environment env;
 	
-        
+        @Inject GreenHouseManagerServiceServiceImpl greenHouseManagerServiceServiceImpl;
 
 
 	/**
