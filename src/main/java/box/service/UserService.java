@@ -20,7 +20,6 @@ import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import javax.inject.Inject;
 import java.util.*;
-import javax.annotation.PostConstruct;
 
 /**
  * Service class for managing users.
@@ -56,10 +55,7 @@ public class UserService {
             });
     }
 
-     @PostConstruct
-    public void initIt() {
-        this.getUserWithAuthorities();
-    }
+    
     
     public Optional<User> completePasswordReset(String newPassword, String key) {
        log.debug("Reset user password for reset key {}", key);

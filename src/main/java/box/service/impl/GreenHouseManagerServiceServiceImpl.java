@@ -1,22 +1,21 @@
-package box.service;
+package box.service.impl;
 
 import box.domain.GreenHouseManager;
-import javax.inject.Inject;
-import org.joda.time.DateTime;
-import org.springframework.stereotype.Component;
-
 import box.repository.GreenHouseManagerRepository;
+import box.service.GreenHouseManagerServiceService;
 import javax.annotation.PostConstruct;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Configurable;
+import javax.inject.Inject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class GreenHouseManagerRunner extends Thread {
+public class GreenHouseManagerServiceServiceImpl extends Thread implements GreenHouseManagerServiceService {
 
-    @Inject
+    private final Logger log = LoggerFactory.getLogger(GreenHouseManagerServiceServiceImpl.class);
+ @Inject
     private GreenHouseManagerRepository greenHouseManagerRepository;
 
     private GreenHouseManager manager;
@@ -25,7 +24,7 @@ public class GreenHouseManagerRunner extends Thread {
     
     @PostConstruct
     public void initIt() {
-//        manager = greenHouseManagerRepository.findOne(1011L);
+        manager = greenHouseManagerRepository.findOne(1011L);
 
     }
     //tmp
