@@ -25,7 +25,7 @@ public class GreenHouseManagerRunner extends Thread {
     
     @PostConstruct
     public void initIt() {
-        manager = greenHouseManagerRepository.findOne(1011L);
+//        manager = greenHouseManagerRepository.findOne(1011L);
 
     }
     //tmp
