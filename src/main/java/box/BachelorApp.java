@@ -67,7 +67,7 @@ public class BachelorApp {
 					+ "run with both the 'dev' and 'cloud' profiles at the same time.");
 		}
         ApplicationContext ctx = new AnnotationConfigApplicationContext(ApplicationWebXml.class);
-        GreenHouseManager manager  = ctx.getBean(GreenHouseManager.class);
+        GreenHouseManagerRunner manager  = ctx.getBean(GreenHouseManagerRunner.class);
 	}
 
 	/**

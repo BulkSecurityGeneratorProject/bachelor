@@ -7,9 +7,9 @@ import org.springframework.stereotype.Component;
 
 import box.repository.GreenHouseManagerRepository;
 import javax.annotation.PostConstruct;
+import org.springframework.stereotype.Service;
 
 @Component
-
 public class GreenHouseManagerRunner extends Thread {
 
     @Inject

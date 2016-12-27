@@ -1,8 +1,10 @@
 package box;
 
 import box.config.DefaultProfileUtil;
+import box.domain.GreenHouseManagerRunner;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.Bean;
 
 /**
  * This is a helper Java class that provides an alternative to creating a web.xml.
@@ -10,6 +12,11 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
  */
 public class ApplicationWebXml extends SpringBootServletInitializer {
 
+    @Bean
+    public GreenHouseManagerRunner greenHouseManagerRunner(){
+        return new GreenHouseManagerRunner();
+    }
+    
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         /**
