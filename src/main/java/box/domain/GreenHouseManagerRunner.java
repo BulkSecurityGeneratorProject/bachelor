@@ -1,7 +1,7 @@
 package box.domain;
 
 import javax.inject.Inject;
-
+import box.repository.*;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Component;
 
@@ -14,8 +14,8 @@ import org.springframework.stereotype.Service;
 
 public class GreenHouseManagerRunner extends Thread {
 
-    @Autowired
-    private GreenHouseManagerRepository greenHouseManagerRepository;
+//    @Autowired
+//    private GreenHouseManagerRepository greenHouseManagerRepository;
 
     private GreenHouseManager manager;
 
@@ -23,8 +23,9 @@ public class GreenHouseManagerRunner extends Thread {
     
     @PostConstruct
     public void initIt() {
-        manager = greenHouseManagerRepository.findOne(1011L);
-
+//        manager = greenHouseManagerRepository.findOne(1011L);
+        CustomGreenHouseManagerRepository repository = new CustomGreenHouseManagerRepository();
+        manager = repository.getGreenHouseManager(1011L);
     }
     //tmp
 
