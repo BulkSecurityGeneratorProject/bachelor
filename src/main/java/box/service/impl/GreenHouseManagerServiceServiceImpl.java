@@ -7,12 +7,13 @@ import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional
-public class GreenHouseManagerServiceServiceImpl extends Thread implements GreenHouseManagerServiceService {
+public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerServiceService {
 
     private final Logger log = LoggerFactory.getLogger(GreenHouseManagerServiceServiceImpl.class);
  @Inject
@@ -74,7 +75,7 @@ public class GreenHouseManagerServiceServiceImpl extends Thread implements Green
 	        }*/
     }
 
-    @Override
+    @Scheduled(fixedRate = 5000)
     public void run() {
         while (true) {
 //	            log.error("manager started..............................................................................dasdasdsada:w");
