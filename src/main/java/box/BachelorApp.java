@@ -5,7 +5,7 @@ import box.config.DefaultProfileUtil;
 import box.config.JHipsterProperties;
 import box.domain.GreenHouse;
 import box.domain.GreenHouseManager;
-import box.domain.GreenHouseManagerRunner;
+import box.service.GreenHouseManagerRunner;
 import box.domain.ProfileSettings;
 import box.repository.GreenHouseManagerRepository;
 import box.web.rest.GreenHouseManagerResource;

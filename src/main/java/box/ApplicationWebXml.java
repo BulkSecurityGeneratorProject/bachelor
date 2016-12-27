@@ -1,7 +1,7 @@
 package box;
 
 import box.config.DefaultProfileUtil;
-import box.domain.GreenHouseManagerRunner;
+import box.service.GreenHouseManagerRunner;
 import box.repository.GreenHouseManagerRepository;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;

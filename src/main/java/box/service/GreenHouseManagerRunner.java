@@ -1,5 +1,6 @@
-package box.domain;
+package box.service;
 
+import box.domain.GreenHouseManager;
 import javax.inject.Inject;
 import box.repository.*;
 import org.joda.time.DateTime;
@@ -10,12 +11,14 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-
+@Service
+@Transactional
 public class GreenHouseManagerRunner extends Thread {
 
-//    @Autowired
-//    private GreenHouseManagerRepository greenHouseManagerRepository;
+    @Inject
+    private GreenHouseManagerRepository greenHouseManagerRepository;
 
     private GreenHouseManager manager;
 
@@ -23,9 +26,8 @@ public class GreenHouseManagerRunner extends Thread {
     
     @PostConstruct
     public void initIt() {
-//        manager = greenHouseManagerRepository.findOne(1011L);
-        CustomGreenHouseManagerRepository repository = new CustomGreenHouseManagerRepository();
-        manager = repository.getGreenHouseManager(1011L);
+        manager = greenHouseManagerRepository.findOne(1011L);
+
     }
     //tmp
 
