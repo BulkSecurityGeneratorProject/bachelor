@@ -69,7 +69,7 @@ public class BachelorApp {
 			log.error("You have misconfigured your application! It should not"
 					+ "run with both the 'dev' and 'cloud' profiles at the same time.");
 		}
-        ApplicationContext ctx = new AnnotationConfigApplicationContext(ApplicationWebXml.class);
+//        ApplicationContext ctx = new AnnotationConfigApplicationContext(ApplicationWebXml.class);
 //        GreenHouseManagerRunner manager  = ctx.getBean(GreenHouseManagerRunner.class);
 	}
 

@@ -24,16 +24,16 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
 @Configuration
 @EnableScheduling
 @ComponentScan("box.service")
-public class ApplicationWebXml extends SpringBootServletInitializer implements SchedulingConfigurer {
+public class ApplicationWebXml extends SpringBootServletInitializer /*implements SchedulingConfigurer*/ {
 
 //    @Bean
 //    public GreenHouseManagerRunner greenHouseManagerRunner(){
 //        return new GreenHouseManagerRunner();
 //    }
-    @Bean
-    public GreenHouseManagerServiceService greenHouseManagerServiceService() {
-        return new GreenHouseManagerServiceServiceImpl();
-    }
+//    @Bean
+//    public GreenHouseManagerServiceService greenHouseManagerServiceService() {
+//        return new GreenHouseManagerServiceServiceImpl();
+//    }
     
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
@@ -44,19 +44,19 @@ public class ApplicationWebXml extends SpringBootServletInitializer implements S
         return application.sources(BachelorApp.class);
     }
     
-    @Bean(destroyMethod = "shutdown")
-    public Executor taskExecutor() {
-        return Executors.newScheduledThreadPool(5);
-    }
-    
-    @Override
-    public void configureTasks(ScheduledTaskRegistrar str) {
-        str.setScheduler(taskExecutor());
-        str.addFixedRateTask(new IntervalTask(new Runnable() {
-            @Override
-            public void run() {
-                greenHouseManagerServiceService().run();
-            }
-        },0));
-    }
+//    @Bean(destroyMethod = "shutdown")
+//    public Executor taskExecutor() {
+//        return Executors.newScheduledThreadPool(5);
+//    }
+//    
+//    @Override
+//    public void configureTasks(ScheduledTaskRegistrar str) {
+//        str.setScheduler(taskExecutor());
+//        str.addFixedRateTask(new IntervalTask(new Runnable() {
+//            @Override
+//            public void run() {
+//                greenHouseManagerServiceService().run();
+//            }
+//        },0));
+//    }
 }
