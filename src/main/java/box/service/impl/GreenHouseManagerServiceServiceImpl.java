@@ -33,18 +33,20 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
     }
     //tmp
 
-    
     private void manageHumidity() {
+        log.debug("HUMIDITY Start" + manager.getGreenHouse().getHumidity().getSensorValue() + ", " + manager.getSettings().getMinHumidity());
+
         if (manager.getGreenHouse().getHumidity().getSensorValue() < manager.getSettings().getMinHumidity()) {
-            log.debug("HUMIDITY ON " + manager.getGreenHouse().getHumidity().getSensorValue() + ", " + manager.getSettings().getMinHumidity()   );
+            log.debug("HUMIDITY ON " + manager.getGreenHouse().getHumidity().getSensorValue() + ", " + manager.getSettings().getMinHumidity());
             manager.getGreenHouse().getHumidifier().turnOn();
-        } else if (manager.getGreenHouse().getHumidity().getSensorValue() > manager.getSettings().getMaxHumidity()) {
+        } else if (manager.getGreenHouse().getHumidity().getSensorValue() >= manager.getSettings().getMaxHumidity()) {
             log.debug("HUMIDITY OFF");
 
             manager.getGreenHouse().getHumidifier().turnOff();
         }
 
     }
+
     @Transactional(propagation = Propagation.SUPPORTS)
     private void managePumps() {
         boolean wattering = true;
@@ -66,6 +68,7 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
     private void manageLights() {
         DateTime time = new DateTime();
         boolean lightsOn = true;
+        log.debug(manager.getSettings().getStartHour() + "   " + time.getHourOfDay());
         if (manager.getSettings().getStartHour() > time.getHourOfDay() && manager.getSettings().getStartMinute() > time.getMinuteOfHour()
                 && manager.getSettings().getEndHour() < time.getHourOfDay() && manager.getSettings().getEndMinute() < time.getMinuteOfHour()) {
             lightsOn = true;
