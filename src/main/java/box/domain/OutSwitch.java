@@ -15,8 +15,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * A OutSwitch.
@@ -27,7 +25,6 @@ import org.slf4j.LoggerFactory;
 public class OutSwitch implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private final Logger log = LoggerFactory.getLogger(OutSwitch.class);
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -98,8 +95,6 @@ public class OutSwitch implements Serializable {
             pin = GpioFactory.getInstance().provisionDigitalOutputPin(RaspiPinTools.getEnumFromInt(pinNumber), "name",
                     PinState.HIGH);
             pin.setShutdownOptions(true, PinState.LOW);
-            log.debug("Turn on, init");
-
         }
         pin.setState(true);
     }
@@ -109,10 +104,7 @@ public class OutSwitch implements Serializable {
             pin = GpioFactory.getInstance().provisionDigitalOutputPin(RaspiPinTools.getEnumFromInt(pinNumber), "name",
                     PinState.LOW);
             pin.setShutdownOptions(true, PinState.LOW);
-            log.debug("Turn off, init");
         }
-        log.debug("Turn off");
-
         pin.setState(false);
     }
 
