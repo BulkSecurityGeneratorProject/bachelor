@@ -24,101 +24,107 @@ import java.util.Objects;
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 public class OutSwitch implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	@Column(name = "name")
-	private String name;
+    @Column(name = "name")
+    private String name;
 
-	@NotNull
-	@Column(name = "pin_number", nullable = false)
-	private Integer pinNumber;
+    @NotNull
+    @Column(name = "pin_number", nullable = false)
+    private Integer pinNumber;
 
-	@Transient
-	@JsonSerialize
-	@JsonDeserialize
-	private GpioPinDigitalOutput pin = null;
+    @Transient
+    @JsonSerialize
+    @JsonDeserialize
+    private GpioPinDigitalOutput pin = null;
 
-	public Long getId() {
-		return id;
-	}
+    public Long getId() {
+        return id;
+    }
 
-	public GpioPinDigitalOutput getPin() {
-		return pin;
-	}
+    public GpioPinDigitalOutput getPin() {
+        return pin;
+    }
 
-	public void setPin(GpioPinDigitalOutput pin) {
-		this.pin = pin;
-	}
+    public void setPin(GpioPinDigitalOutput pin) {
+        this.pin = pin;
+    }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public OutSwitch name(String name) {
-		this.name = name;
-		return this;
-	}
+    public OutSwitch name(String name) {
+        this.name = name;
+        return this;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Integer getPinNumber() {
-		return pinNumber;
-	}
+    public Integer getPinNumber() {
+        if (pin == null) {
+            pin = GpioFactory.getInstance().provisionDigitalOutputPin(RaspiPinTools.getEnumFromInt(pinNumber), "name",
+                    PinState.HIGH);
+            pin.setShutdownOptions(true, PinState.LOW);
+        }
+        return pinNumber;
+    }
 
-	public OutSwitch pinNumber(Integer pinNumber) {
-		this.pinNumber = pinNumber;
-		return this;
-	}
+    public OutSwitch pinNumber(Integer pinNumber) {
+        this.pinNumber = pinNumber;
+        return this;
+    }
 
-	public void setPinNumber(Integer pinNumber) {
-		if (pin == null) {
-			pin = GpioFactory.getInstance().provisionDigitalOutputPin(RaspiPinTools.getEnumFromInt(pinNumber), "name",
-					PinState.HIGH);
-		}
-		pin.setShutdownOptions(true, PinState.LOW);
-		this.pinNumber = pinNumber;
-	}
+    public void setPinNumber(Integer pinNumber) {
+        if (pin == null) {
+            pin = GpioFactory.getInstance().provisionDigitalOutputPin(RaspiPinTools.getEnumFromInt(pinNumber), "name",
+                    PinState.HIGH);
+            pin.setShutdownOptions(true, PinState.LOW);
+        }
 
-	public void turnOn() {
-		pin.setState(true);
-	}
+        this.pinNumber = pinNumber;
+    }
 
-	public void turnOff() {
-		pin.setState(false);
-	}
+    public void turnOn() {
+        pin.setState(true);
+    }
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
-		OutSwitch outSwitch = (OutSwitch) o;
-		if (outSwitch.id == null || id == null) {
-			return false;
-		}
-		return Objects.equals(id, outSwitch.id);
-	}
+    public void turnOff() {
+        pin.setState(false);
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hashCode(id);
-	}
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        OutSwitch outSwitch = (OutSwitch) o;
+        if (outSwitch.id == null || id == null) {
+            return false;
+        }
+        return Objects.equals(id, outSwitch.id);
+    }
 
-	@Override
-	public String toString() {
-		return "OutSwitch{" + "id=" + id + ", name='" + name + "'" + ", pinNumber='" + pinNumber + "'" + '}';
-	}
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    @Override
+    public String toString() {
+        return "OutSwitch{" + "id=" + id + ", name='" + name + "'" + ", pinNumber='" + pinNumber + "'" + '}';
+    }
 }
