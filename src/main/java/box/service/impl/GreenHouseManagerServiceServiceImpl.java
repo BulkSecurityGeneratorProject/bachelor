@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerServiceService {
 
+    private final long START_PROFILE_SETTINGS = 1011L;
     private final Logger log = LoggerFactory.getLogger(GreenHouseManagerServiceServiceImpl.class);
     @Inject
     private GreenHouseManagerRepository greenHouseManagerRepository;
@@ -26,7 +27,7 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
 
     @PostConstruct
     public void initIt() {
-        manager = greenHouseManagerRepository.findOne(1011L);
+        manager = greenHouseManagerRepository.findOne(START_PROFILE_SETTINGS);
 
     }
     //tmp
@@ -86,6 +87,11 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
         manageLights();
 //        }
 
+    }
+
+    @Override
+    public void update(Long id) {
+        manager = greenHouseManagerRepository.findOne(id); 
     }
 
 }

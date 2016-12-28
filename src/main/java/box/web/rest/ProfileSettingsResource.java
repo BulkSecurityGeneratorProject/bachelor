@@ -4,6 +4,8 @@ import com.codahale.metrics.annotation.Timed;
 import box.domain.ProfileSettings;
 
 import box.repository.ProfileSettingsRepository;
+import box.service.GreenHouseManagerServiceService;
+import box.service.impl.GreenHouseManagerServiceServiceImpl;
 import box.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +20,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 
 /**
  * REST controller for managing ProfileSettings.
@@ -27,15 +31,20 @@ import java.util.Optional;
 public class ProfileSettingsResource {
 
     private final Logger log = LoggerFactory.getLogger(ProfileSettingsResource.class);
-        
+
     @Inject
     private ProfileSettingsRepository profileSettingsRepository;
 
+    @Inject
+    private GreenHouseManagerServiceService greenHouseManagerSericeService;
+
     /**
-     * POST  /profile-settings : Create a new profileSettings.
+     * POST /profile-settings : Create a new profileSettings.
      *
      * @param profileSettings the profileSettings to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new profileSettings, or with status 400 (Bad Request) if the profileSettings has already an ID
+     * @return the ResponseEntity with status 201 (Created) and with body the
+     * new profileSettings, or with status 400 (Bad Request) if the
+     * profileSettings has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PostMapping("/profile-settings")
@@ -47,17 +56,18 @@ public class ProfileSettingsResource {
         }
         ProfileSettings result = profileSettingsRepository.save(profileSettings);
         return ResponseEntity.created(new URI("/api/profile-settings/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert("profileSettings", result.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityCreationAlert("profileSettings", result.getId().toString()))
+                .body(result);
     }
 
     /**
-     * PUT  /profile-settings : Updates an existing profileSettings.
+     * PUT /profile-settings : Updates an existing profileSettings.
      *
      * @param profileSettings the profileSettings to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated profileSettings,
-     * or with status 400 (Bad Request) if the profileSettings is not valid,
-     * or with status 500 (Internal Server Error) if the profileSettings couldnt be updated
+     * @return the ResponseEntity with status 200 (OK) and with body the updated
+     * profileSettings, or with status 400 (Bad Request) if the profileSettings
+     * is not valid, or with status 500 (Internal Server Error) if the
+     * profileSettings couldnt be updated
      * @throws URISyntaxException if the Location URI syntax is incorrect
      */
     @PutMapping("/profile-settings")
@@ -68,15 +78,17 @@ public class ProfileSettingsResource {
             return createProfileSettings(profileSettings);
         }
         ProfileSettings result = profileSettingsRepository.save(profileSettings);
+        greenHouseManagerSericeService.update(profileSettings.getId());
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert("profileSettings", profileSettings.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityUpdateAlert("profileSettings", profileSettings.getId().toString()))
+                .body(result);
     }
 
     /**
-     * GET  /profile-settings : get all the profileSettings.
+     * GET /profile-settings : get all the profileSettings.
      *
-     * @return the ResponseEntity with status 200 (OK) and the list of profileSettings in body
+     * @return the ResponseEntity with status 200 (OK) and the list of
+     * profileSettings in body
      */
     @GetMapping("/profile-settings")
     @Timed
@@ -87,10 +99,11 @@ public class ProfileSettingsResource {
     }
 
     /**
-     * GET  /profile-settings/:id : get the "id" profileSettings.
+     * GET /profile-settings/:id : get the "id" profileSettings.
      *
      * @param id the id of the profileSettings to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the profileSettings, or with status 404 (Not Found)
+     * @return the ResponseEntity with status 200 (OK) and with body the
+     * profileSettings, or with status 404 (Not Found)
      */
     @GetMapping("/profile-settings/{id}")
     @Timed
@@ -98,14 +111,14 @@ public class ProfileSettingsResource {
         log.debug("REST request to get ProfileSettings : {}", id);
         ProfileSettings profileSettings = profileSettingsRepository.findOne(id);
         return Optional.ofNullable(profileSettings)
-            .map(result -> new ResponseEntity<>(
+                .map(result -> new ResponseEntity<>(
                 result,
                 HttpStatus.OK))
-            .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     /**
-     * DELETE  /profile-settings/:id : delete the "id" profileSettings.
+     * DELETE /profile-settings/:id : delete the "id" profileSettings.
      *
      * @param id the id of the profileSettings to delete
      * @return the ResponseEntity with status 200 (OK)
