@@ -2,6 +2,7 @@ package box;
 
 import box.config.DefaultProfileUtil;
 import box.repository.GreenHouseManagerRepository;
+import box.service.AuditEventService;
 import box.service.GreenHouseManagerServiceService;
 import box.service.impl.GreenHouseManagerServiceServiceImpl;
 import java.util.concurrent.Executor;
@@ -21,18 +22,23 @@ import org.springframework.scheduling.config.ScheduledTaskRegistrar;
  * web.xml. This will be invoked only when the application is deployed to a
  * servlet container like Tomcat, Jboss etc.
  */
-@Configuration
-@EnableScheduling
-@ComponentScan("box.service")
+//@Configuration
+//@EnableScheduling
+//@ComponentScan("box.service")
 public class ApplicationWebXml extends SpringBootServletInitializer /*implements SchedulingConfigurer*/ {
 
 //    @Bean
 //    public GreenHouseManagerRunner greenHouseManagerRunner(){
 //        return new GreenHouseManagerRunner();
 //    }
-//    @Bean
-//    public GreenHouseManagerServiceService greenHouseManagerServiceService() {
-//        return new GreenHouseManagerServiceServiceImpl();
+    @Bean
+    public GreenHouseManagerServiceService greenHouseManagerServiceService() {
+        return new GreenHouseManagerServiceServiceImpl();
+    }
+    
+//    @Bean 
+//    public AuditEventService auditEventService(){
+//        return new AuditEventService(persistenceAuditEventRepository, auditEventConverter);
 //    }
     
     @Override
