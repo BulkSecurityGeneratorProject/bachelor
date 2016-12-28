@@ -34,9 +34,9 @@ public class ProfileSettingsResource {
 
     @Inject
     private ProfileSettingsRepository profileSettingsRepository;
-
-    @Inject
-    private GreenHouseManagerServiceService greenHouseManagerSericeService;
+//
+//    @Inject
+//    private GreenHouseManagerServiceService greenHouseManagerSericeService;
 
     /**
      * POST /profile-settings : Create a new profileSettings.
@@ -78,7 +78,7 @@ public class ProfileSettingsResource {
             return createProfileSettings(profileSettings);
         }
         ProfileSettings result = profileSettingsRepository.save(profileSettings);
-        greenHouseManagerSericeService.update(profileSettings.getId());
+//        greenHouseManagerSericeService.update(profileSettings.getId());
         return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert("profileSettings", profileSettings.getId().toString()))
                 .body(result);
