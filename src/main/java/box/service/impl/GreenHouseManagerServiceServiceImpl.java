@@ -33,25 +33,25 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
     }
     //tmp
 
-    @Transactional(propagation = Propagation.SUPPORTS)
+    
     private void manageHumidity() {
         if (manager.getGreenHouse().getHumidity().getSensorValue() < manager.getSettings().getMinHumidity()) {
             log.debug("HUMIDITY ON " + manager.getGreenHouse().getHumidity().getSensorValue() + ", " + manager.getSettings().getMinHumidity()   );
             manager.getGreenHouse().getHumidifier().turnOn();
-        } else if (manager.getGreenHouse().getHumidity().getSensorValue() > manager.getSettings().getMaxGroundHumidity()) {
+        } else if (manager.getGreenHouse().getHumidity().getSensorValue() > manager.getSettings().getMaxHumidity()) {
             log.debug("HUMIDITY OFF");
 
             manager.getGreenHouse().getHumidifier().turnOff();
         }
 
     }
-
+    @Transactional(propagation = Propagation.SUPPORTS)
     private void managePumps() {
         boolean wattering = true;
         for (Plant plant : manager.getGreenHouse().getPlants()) {
-            if (plant.getHumidity().getSensorValue() < manager.getSettings().getMinHumidity()) {
+            if (plant.getHumidity().getSensorValue() < manager.getSettings().getMinGrounHumidity()) {
                 wattering = true;
-            } else if (plant.getHumidity().getSensorValue() > manager.getSettings().getMaxHumidity()) {
+            } else if (plant.getHumidity().getSensorValue() > manager.getSettings().getMaxGroundHumidity()) {
                 wattering = false;
             }
             if (wattering) {
