@@ -69,8 +69,8 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
         DateTime time = new DateTime();
         boolean lightsOn = true;
         log.debug(manager.getSettings().getStartHour() + "   " + time.getHourOfDay());
-        if (manager.getSettings().getStartHour() > time.getHourOfDay() && manager.getSettings().getStartMinute() > time.getMinuteOfHour()
-                && manager.getSettings().getEndHour() < time.getHourOfDay() && manager.getSettings().getEndMinute() < time.getMinuteOfHour()) {
+        if (manager.getSettings().getStartHour() > time.getHourOfDay() && manager.getSettings().getStartMinute() >= time.getMinuteOfHour()
+                && manager.getSettings().getEndHour() < time.getHourOfDay() && manager.getSettings().getEndMinute() <= time.getMinuteOfHour()) {
             lightsOn = true;
         } else {
             lightsOn = false;
