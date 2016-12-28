@@ -33,9 +33,14 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
     //tmp
 
     private void manageHumidity() {
+        log.debug(manager.getGreenHouse().getHumidity().getSensorValue() + ", " + manager.getSettings().getMinGrounHumidity()   );
+
         if (manager.getGreenHouse().getHumidity().getSensorValue() < manager.getSettings().getMinGrounHumidity()) {
+            log.debug("HUMIDITY ON " + manager.getGreenHouse().getHumidity().getSensorValue() + ", " + manager.getSettings().getMinGrounHumidity()   );
             manager.getGreenHouse().getHumidifier().turnOn();
         } else if (manager.getGreenHouse().getHumidity().getSensorValue() > manager.getSettings().getMaxGroundHumidity()) {
+            log.debug("HUMIDITY OFF");
+
             manager.getGreenHouse().getHumidifier().turnOff();
         }
 
@@ -70,8 +75,12 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
 
         for (OutSwitch light : manager.getGreenHouse().getLights()) {
             if (lightsOn) {
+                log.debug("Lights ON");
+
                 light.turnOn();
             } else {
+                log.debug("Lights off");
+
                 light.turnOff();
             }
         }
@@ -91,7 +100,7 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
 
     @Override
     public void update(Long id) {
-        manager = greenHouseManagerRepository.findOne(id); 
+        manager = greenHouseManagerRepository.findOne(id);
     }
 
 }
