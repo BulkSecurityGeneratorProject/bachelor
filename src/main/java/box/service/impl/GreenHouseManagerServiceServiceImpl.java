@@ -75,14 +75,15 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
 	        }*/
     }
 
-    @Scheduled(fixedRate = 5000)
+    @Override
+    @Scheduled()
     public void run() {
-        while (true) {
+//        while (true) {
 //	            log.error("manager started..............................................................................dasdasdsada:w");
             manageHumidity();
             managePumps();
             manageLights();
-        }
+//        }
 
     }
 
