@@ -36,7 +36,7 @@ public class GreenHouse implements Serializable {
     private OutSwitch humidifier;
 
     @ManyToMany
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "green_house_plants",
                joinColumns = @JoinColumn(name="green_houses_id", referencedColumnName="ID"),
                inverseJoinColumns = @JoinColumn(name="plants_id", referencedColumnName="ID"))
