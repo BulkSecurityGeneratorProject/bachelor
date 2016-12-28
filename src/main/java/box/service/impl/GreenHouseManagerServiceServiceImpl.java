@@ -33,10 +33,8 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
     //tmp
 
     private void manageHumidity() {
-        log.debug(manager.getGreenHouse().getHumidity().getSensorValue() + ", " + manager.getSettings().getMinGrounHumidity()   );
-
-        if (manager.getGreenHouse().getHumidity().getSensorValue() < manager.getSettings().getMinGrounHumidity()) {
-            log.debug("HUMIDITY ON " + manager.getGreenHouse().getHumidity().getSensorValue() + ", " + manager.getSettings().getMinGrounHumidity()   );
+        if (manager.getGreenHouse().getHumidity().getSensorValue() < manager.getSettings().getMinHumidity()) {
+            log.debug("HUMIDITY ON " + manager.getGreenHouse().getHumidity().getSensorValue() + ", " + manager.getSettings().getMinHumidity()   );
             manager.getGreenHouse().getHumidifier().turnOn();
         } else if (manager.getGreenHouse().getHumidity().getSensorValue() > manager.getSettings().getMaxGroundHumidity()) {
             log.debug("HUMIDITY OFF");
