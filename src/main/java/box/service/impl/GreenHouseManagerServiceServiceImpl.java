@@ -76,7 +76,7 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
     }
 
     @Override
-    @Scheduled(fixedRate = 1000)
+    @Scheduled(fixedDelay = 1000)
     public void run() {
 //        while (true) {
 //	            log.error("manager started..............................................................................dasdasdsada:w");
