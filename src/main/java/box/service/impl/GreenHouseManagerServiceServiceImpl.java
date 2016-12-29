@@ -36,7 +36,7 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
     @Transactional(propagation = Propagation.SUPPORTS)
     private void manageHumidity() {
         if (manager.getGreenHouse().getHumidity().getSensorValue() < manager.getSettings().getMinHumidity()) {
-//           log.debug("HUMIDITY ON " + manager.getGreenHouse().getHumidity().getSensorValue() + ", " + manager.getSettings().getMinHumidity());
+           log.debug("HUMIDITY ON " + manager.getGreenHouse().getHumidity().getSensorValue() + ", " + manager.getSettings().getMinHumidity());
             manager.getGreenHouse().getHumidifier().turnOn();
         } else if (manager.getGreenHouse().getHumidity().getSensorValue() >= manager.getSettings().getMaxHumidity()) {
             log.debug("HUMIDITY OFF");
@@ -69,7 +69,6 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
     private void manageLights() {
         DateTime time = new DateTime();
         boolean lightsOn = true;
-        log.debug("start hour:" + manager.getSettings().getStartHour() + ", end hour:" + manager.getSettings().getEndHour() + " ,now:" + time.getHourOfDay());
         //TODO repair checking conditional
         if (manager.getSettings().getStartHour() > time.getHourOfDay()
                 && manager.getSettings().getEndHour() < time.getHourOfDay()) {
@@ -80,13 +79,9 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
 
         for (OutSwitch light : manager.getGreenHouse().getLights()) {
             if (lightsOn) {
-                log.debug("Lights ON");
-
-                log.debug("Lights:\t" + light.turnOn());
+               light.turnOn();
             } else {
-                log.debug("Lights off");
-
-                log.debug("Lights:\t" + light.turnOff());
+                light.turnOff();
             }
         }
     }
