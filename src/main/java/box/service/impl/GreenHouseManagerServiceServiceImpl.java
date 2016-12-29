@@ -32,10 +32,9 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
 
     }
     //tmp
-
+    
+    @Transactional(propagation = Propagation.SUPPORTS)
     private void manageHumidity() {
-        log.debug("HUMIDITY Start" + manager.getGreenHouse().getHumidity().getSensorValue() + ", " + manager.getSettings().getMinHumidity());
-
         if (manager.getGreenHouse().getHumidity().getSensorValue() < manager.getSettings().getMinHumidity()) {
            log.debug("HUMIDITY ON " + manager.getGreenHouse().getHumidity().getSensorValue() + ", " + manager.getSettings().getMinHumidity());
            log.debug("HUMIDITY:\t" +  manager.getGreenHouse().getHumidifier().turnOn());
@@ -65,7 +64,8 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
 
         }
     }
-
+    
+    @Transactional(propagation = Propagation.SUPPORTS)
     private void manageLights() {
         DateTime time = new DateTime();
         boolean lightsOn = true;
