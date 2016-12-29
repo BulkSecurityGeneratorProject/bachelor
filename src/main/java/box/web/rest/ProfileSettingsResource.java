@@ -78,7 +78,7 @@ public class ProfileSettingsResource {
             return createProfileSettings(profileSettings);
         }
         ProfileSettings result = profileSettingsRepository.save(profileSettings);
-        greenHouseManagerSericeService.update(profileSettings.getId());
+        greenHouseManagerSericeService.update(profileSettings);
         return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert("profileSettings", profileSettings.getId().toString()))
                 .body(result);

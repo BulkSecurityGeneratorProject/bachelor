@@ -14,7 +14,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
+import box.domain.ProfileSettings;
 @Service
 @Transactional
 public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerServiceService {
@@ -99,8 +99,8 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
     }
 
     @Override
-    public void update(Long id) {
-        manager = greenHouseManagerRepository.findOne(id);
+    public void update(ProfileSettings profileSettings) {
+        manager.setSettings(profileSettings);
     }
 
 }
