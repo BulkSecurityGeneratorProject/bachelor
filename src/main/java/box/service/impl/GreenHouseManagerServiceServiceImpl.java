@@ -32,16 +32,16 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
 
     }
     //tmp
-    
+
     @Transactional(propagation = Propagation.SUPPORTS)
     private void manageHumidity() {
         if (manager.getGreenHouse().getHumidity().getSensorValue() < manager.getSettings().getMinHumidity()) {
 //           log.debug("HUMIDITY ON " + manager.getGreenHouse().getHumidity().getSensorValue() + ", " + manager.getSettings().getMinHumidity());
-//           log.debug("HUMIDITY:\t" +  manager.getGreenHouse().getHumidifier().turnOn());
+            manager.getGreenHouse().getHumidifier().turnOn();
         } else if (manager.getGreenHouse().getHumidity().getSensorValue() >= manager.getSettings().getMaxHumidity()) {
             log.debug("HUMIDITY OFF");
 
-//            log.error("HUMIDITY:\t" + manager.getGreenHouse().getHumidifier().turnOff());
+            manager.getGreenHouse().getHumidifier().turnOff();
         }
 
     }
@@ -64,14 +64,15 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
 
         }
     }
-    
+
     @Transactional(propagation = Propagation.SUPPORTS)
     private void manageLights() {
         DateTime time = new DateTime();
         boolean lightsOn = true;
         log.debug("start hour:" + manager.getSettings().getStartHour() + ", end hour:" + manager.getSettings().getEndHour() + " ,now:" + time.getHourOfDay());
-        if (manager.getSettings().getStartHour() > time.getHourOfDay() && manager.getSettings().getStartMinute() >= time.getMinuteOfHour()
-                && manager.getSettings().getEndHour() < time.getHourOfDay() && manager.getSettings().getEndMinute() <= time.getMinuteOfHour()) {
+        //TODO repair checking conditional
+        if (manager.getSettings().getStartHour() > time.getHourOfDay()
+                && manager.getSettings().getEndHour() < time.getHourOfDay()) {
             lightsOn = true;
         } else {
             lightsOn = false;
@@ -81,11 +82,11 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
             if (lightsOn) {
                 log.debug("Lights ON");
 
-                log.debug("Lights:\t" +light.turnOn());
+                log.debug("Lights:\t" + light.turnOn());
             } else {
                 log.debug("Lights off");
 
-                log.debug("Lights:\t" +light.turnOff());
+                log.debug("Lights:\t" + light.turnOff());
             }
         }
     }
