@@ -38,11 +38,11 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
 
         if (manager.getGreenHouse().getHumidity().getSensorValue() < manager.getSettings().getMinHumidity()) {
            log.debug("HUMIDITY ON " + manager.getGreenHouse().getHumidity().getSensorValue() + ", " + manager.getSettings().getMinHumidity());
-    //       log.debug("HUMIDITY:\t" +  manager.getGreenHouse().getHumidifier().turnOn());
+           log.debug("HUMIDITY:\t" +  manager.getGreenHouse().getHumidifier().turnOn());
         } else if (manager.getGreenHouse().getHumidity().getSensorValue() >= manager.getSettings().getMaxHumidity()) {
             log.debug("HUMIDITY OFF");
 
-//            log.debug("HUMIDITY:\t" + manager.getGreenHouse().getHumidifier().turnOff());
+            log.debug("HUMIDITY:\t" + manager.getGreenHouse().getHumidifier().turnOff());
         }
 
     }
@@ -81,11 +81,11 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
             if (lightsOn) {
                 log.debug("Lights ON");
 
-    //            log.debug("Lights:\t" +light.turnOn());
+                log.debug("Lights:\t" +light.turnOn());
             } else {
                 log.debug("Lights off");
 
-      //          log.debug("Lights:\t" +light.turnOff());
+                log.debug("Lights:\t" +light.turnOff());
             }
         }
     }
