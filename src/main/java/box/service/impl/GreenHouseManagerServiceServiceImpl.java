@@ -70,8 +70,8 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
         DateTime time = new DateTime();
         boolean lightsOn = true;
         //TODO repair checking conditional
-        if (manager.getSettings().getStartHour() > time.getHourOfDay()
-                && manager.getSettings().getEndHour() < time.getHourOfDay()) {
+        if (manager.getSettings().getStartHour() < time.getHourOfDay()
+                && manager.getSettings().getEndHour() > time.getHourOfDay()) {
             lightsOn = true;
         } else {
             lightsOn = false;
