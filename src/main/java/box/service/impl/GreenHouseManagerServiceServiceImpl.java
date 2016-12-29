@@ -25,12 +25,12 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
     private GreenHouseManagerRepository greenHouseManagerRepository;
 
     private GreenHouseManager manager;
-
-    @PostConstruct
-    public void initIt() {
-        manager = greenHouseManagerRepository.findOne(START_PROFILE_SETTINGS);
-
-    }
+//
+//    @PostConstruct
+//    public void initIt() {
+//        manager = greenHouseManagerRepository.findOne(START_PROFILE_SETTINGS);
+//
+//    }
     //tmp
 
     @Transactional(propagation = Propagation.SUPPORTS)
@@ -91,6 +91,7 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
     public void run() {
 //        while (true) {
 //	            log.error("manager started..............................................................................dasdasdsada:w");
+        manager = greenHouseManagerRepository.findOne(START_PROFILE_SETTINGS);
         manageHumidity();
         managePumps();
         manageLights();
