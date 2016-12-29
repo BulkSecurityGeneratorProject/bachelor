@@ -38,11 +38,11 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
 
         if (manager.getGreenHouse().getHumidity().getSensorValue() < manager.getSettings().getMinHumidity()) {
             log.debug("HUMIDITY ON " + manager.getGreenHouse().getHumidity().getSensorValue() + ", " + manager.getSettings().getMinHumidity());
-            manager.getGreenHouse().getHumidifier().turnOn();
+           log.debug("HUMIDITY:\t" +  manager.getGreenHouse().getHumidifier().turnOn());
         } else if (manager.getGreenHouse().getHumidity().getSensorValue() >= manager.getSettings().getMaxHumidity()) {
             log.debug("HUMIDITY OFF");
 
-            manager.getGreenHouse().getHumidifier().turnOff();
+            log.debug("HUMIDITY:\t" + manager.getGreenHouse().getHumidifier().turnOff());
         }
 
     }
@@ -56,11 +56,12 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
             } else if (plant.getHumidity().getSensorValue() > manager.getSettings().getMaxGroundHumidity()) {
                 wattering = false;
             }
-            if (wattering) {
-                manager.getGreenHouse().getHumidifier().turnOn();
-            } else {
-                manager.getGreenHouse().getHumidifier().turnOff();
-            }
+            //TODO: like lights
+//            if (wattering) {
+//                log.debug("PUMPS:\t" + manager.getGreenHouse().getPumps().turnOn());
+//            } else {
+//                log.debug("PUMPS:\t" + manager.getGreenHouse().getHumidifier().turnOff());
+//            }
 
         }
     }
@@ -80,11 +81,11 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
             if (lightsOn) {
                 log.debug("Lights ON");
 
-                light.turnOn();
+                log.debug("Lights:\t" +light.turnOn());
             } else {
                 log.debug("Lights off");
 
-                light.turnOff();
+                log.debug("Lights:\t" +light.turnOff());
             }
         }
     }

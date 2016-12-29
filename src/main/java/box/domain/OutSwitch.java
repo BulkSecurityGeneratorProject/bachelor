@@ -15,8 +15,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * A OutSwitch.
@@ -27,7 +25,6 @@ import org.slf4j.LoggerFactory;
 public class OutSwitch implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private final Logger log = LoggerFactory.getLogger(OutSwitch.class);
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -93,27 +90,32 @@ public class OutSwitch implements Serializable {
         this.pinNumber = pinNumber;
     }
 
-    public void turnOn() {
+    public String turnOn() {
+                String returnString = "TURN ON STATUS:";
+
         if (pin == null) {
             pin = GpioFactory.getInstance().provisionDigitalOutputPin(RaspiPinTools.getEnumFromInt(pinNumber), "name",
                     PinState.HIGH);
-            pin.setShutdownOptions(true, PinState.LOW);
-            log.debug("Turn on, init");
+            pin.setShutdownOptions(true, PinState.LOW);    
+            returnString += "NEW PIN,";
 
         }
         pin.setState(true);
+          returnString += " state true.";
+        return(returnString);
     }
 
-    public void turnOff() {
+    public String turnOff() {
+        String returnString = "TURN OFF STATUS:";
         if (pin == null) {
             pin = GpioFactory.getInstance().provisionDigitalOutputPin(RaspiPinTools.getEnumFromInt(pinNumber), "name",
                     PinState.LOW);
             pin.setShutdownOptions(true, PinState.LOW);
-            log.debug("Turn off, init");
+            returnString += "NEW PIN,";
         }
-        log.debug("Turn off");
-
         pin.setState(false);
+        returnString += " state false.";
+        return(returnString);
     }
 
     @Override
