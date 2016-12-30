@@ -87,7 +87,7 @@ public class RaspiPinTools {
         }
         // check we read 40 bits (8bit x 5 ) + verify checksum in the last
         // byte
-//        if ((j >= 40) && checkParity()) {
+        if ((j >= 40) && checkParity()) {
             float h = (float) ((dht11_dat[0] << 8) + dht11_dat[1]) / 10;
             if (h > 100) {
                 h = dht11_dat[0];   // for DHT11
@@ -101,9 +101,9 @@ public class RaspiPinTools {
 //            }
 //            float f = c * 1.8f + 32;
             return h;
-//        } else {
-//            return -999;
-//        }
+        } else {
+            return -999;
+        }
 
     }
 }
