@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationEventPublisher;
 
 /**
  * REST controller for managing ProfileSettings.
@@ -34,6 +35,9 @@ public class ProfileSettingsResource {
 
     @Inject
     private ProfileSettingsRepository profileSettingsRepository;
+
+    @Autowired
+    private ApplicationEventPublisher publisher;
 
     @Inject
     private GreenHouseManagerServiceService greenHouseManagerSericeService;
@@ -55,6 +59,7 @@ public class ProfileSettingsResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("profileSettings", "idexists", "A new profileSettings cannot already have an ID")).body(null);
         }
         ProfileSettings result = profileSettingsRepository.save(profileSettings);
+        publisher.publishEvent(log);
         return ResponseEntity.created(new URI("/api/profile-settings/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("profileSettings", result.getId().toString()))
                 .body(result);
@@ -78,7 +83,7 @@ public class ProfileSettingsResource {
             return createProfileSettings(profileSettings);
         }
         ProfileSettings result = profileSettingsRepository.save(profileSettings);
-        greenHouseManagerSericeService.update(profileSettings);
+        publisher.publishEvent(result);
         return ResponseEntity.ok()
                 .headers(HeaderUtil.createEntityUpdateAlert("profileSettings", profileSettings.getId().toString()))
                 .body(result);

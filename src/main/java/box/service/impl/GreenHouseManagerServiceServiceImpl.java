@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import box.domain.ProfileSettings;
 import box.utils.RaspiPinTools;
+import org.springframework.context.event.EventListener;
 
 @Service
 @Transactional
@@ -105,6 +106,7 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
     }
 
     @Override
+    @EventListener
     public void update(ProfileSettings profileSettings) {
         manager.setSettings(profileSettings);
     }
