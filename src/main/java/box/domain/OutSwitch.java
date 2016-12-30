@@ -91,13 +91,13 @@ public class OutSwitch implements Serializable {
     }
 
     public void turnOn() {
-         if (pin == null) {
+        if (pin == null) {
             pin = GpioFactory.getInstance().provisionDigitalOutputPin(RaspiPinTools.getEnumFromInt(pinNumber), "name",
                     PinState.LOW);
             pin.setShutdownOptions(true, PinState.LOW);
-           
-
         }
+        pin.setState(false);
+
     }
 
     public void turnOff() {
