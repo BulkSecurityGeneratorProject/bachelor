@@ -15,11 +15,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import box.domain.ProfileSettings;
+import box.utils.RaspiPinTools;
+
 @Service
 @Transactional
 public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerServiceService {
 
-    private final long START_PROFILE_SETTINGS = 1011L;
+    private static final long START_PROFILE_SETTINGS = 1011L;
+    private static final int WRONG_VALUE = -999;
     private final Logger log = LoggerFactory.getLogger(GreenHouseManagerServiceServiceImpl.class);
     @Inject
     private GreenHouseManagerRepository greenHouseManagerRepository;
@@ -35,15 +38,17 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
 
     @Transactional(propagation = Propagation.SUPPORTS)
     private void manageHumidity() {
-        if (manager.getGreenHouse().getHumidity().getSensorValue() < manager.getSettings().getMinHumidity()) {
-           log.debug("HUMIDITY ON " + manager.getGreenHouse().getHumidity().getSensorValue() + ", " + manager.getSettings().getMinHumidity());
-            manager.getGreenHouse().getHumidifier().turnOn();
-        } else if (manager.getGreenHouse().getHumidity().getSensorValue() >= manager.getSettings().getMaxHumidity()) {
-            log.debug("HUMIDITY OFF");
+        double humidity = RaspiPinTools.getHumidity(manager.getGreenHouse().getHumidity().getPinNumber());
+        log.debug("Humidity read: " + humidity);
+        if (humidity != WRONG_VALUE) {
+            if (humidity < manager.getSettings().getMinHumidity()) {
+                manager.getGreenHouse().getHumidifier().turnOn();
+            } else if (humidity >= manager.getSettings().getMaxHumidity()) {
+                log.debug("HUMIDITY OFF");
 
-            manager.getGreenHouse().getHumidifier().turnOff();
+                manager.getGreenHouse().getHumidifier().turnOff();
+            }
         }
-
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
@@ -79,7 +84,7 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
 
         for (OutSwitch light : manager.getGreenHouse().getLights()) {
             if (lightsOn) {
-               light.turnOn();
+                light.turnOn();
             } else {
                 light.turnOff();
             }
