@@ -47,6 +47,6 @@ public class RaspiPinTools {
 
     public static double getHumidity(int pinNumber) {
         float[] data = RaspiPinTools.readData(pinNumber);
-        return data[1];
+        return data[0];
     }
 }

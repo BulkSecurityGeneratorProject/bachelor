@@ -39,7 +39,7 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
     @Transactional(propagation = Propagation.SUPPORTS)
     private void manageHumidity() {
         double humidity = RaspiPinTools.getHumidity(manager.getGreenHouse().getTemperature().getPinNumber());
-        log.debug("Humidity read: " + humidity);
+        log.debug("Humidity read: " + humidity + ", pin number: " + manager.getGreenHouse().getTemperature().getPinNumber())
         if (humidity != WRONG_VALUE) {
             if (humidity < manager.getSettings().getMinHumidity()) {
                 manager.getGreenHouse().getHumidifier().turnOn();
