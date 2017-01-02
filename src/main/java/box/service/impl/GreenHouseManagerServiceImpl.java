@@ -79,17 +79,8 @@ public class GreenHouseManagerServiceImpl implements GreenHouseManagerService {
 
     @Transactional(propagation = Propagation.SUPPORTS)
     private void manageLights() {
-        DateTime time = new DateTime();
         boolean lightsOn = true;
-        //TODO repair checking conditional
-        if (manager.getSettings().getStartHour() > time.getHourOfDay()
-                && manager.getSettings().getEndHour() < time.getHourOfDay()
-                || (manager.getSettings().getStartHour() == time.getHourOfDay()
-                && manager.getSettings().getStartMinute() < time.getMinuteOfHour())
-                || (manager.getSettings().getEndHour() == time.getHourOfDay()
-                && manager.getSettings().getEndMinute() > time.getMinuteOfHour())) {
-            lightsOn = false;
-        }
+        lightsOn = checkLights();
         for (OutSwitch light : manager.getGreenHouse().getLights()) {
             if (lightsOn) {
                 light.turnOn();
@@ -97,6 +88,30 @@ public class GreenHouseManagerServiceImpl implements GreenHouseManagerService {
                 light.turnOff();
             }
         }
+    }
+    
+    //TODO FINISH THIS
+    private boolean checkLights() {
+        DateTime time = new DateTime();
+        if (manager.getSettings().getStartHour() > time.getHourOfDay()
+                && manager.getSettings().getEndHour() < time.getHourOfDay()) {
+
+            return false;
+        }
+        boolean start = manager.getSettings().getStartHour() == time.getHourOfDay();
+        if (start && manager.getSettings().getStartMinute() < time.getMinuteOfHour()) {
+            return false;
+        }
+        boolean end = manager.getSettings().getEndHour() == time.getHourOfDay();
+        if (start && manager.getSettings().getStartMinute() < time.getMinuteOfHour()) {
+            return false;
+        }
+        if (start == end && manager.getSettings().getEndMinute() < time.getMinuteOfHour() || 
+                manager.getSettings().getStartMinute() > time.getMinuteOfHour()) {
+            return false;
+        }
+
+        return true;
     }
 
     @Override
