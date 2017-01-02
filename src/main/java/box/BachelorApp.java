@@ -8,7 +8,7 @@ import box.domain.GreenHouseManager;
 //import box.service.GreenHouseManagerRunner;
 import box.domain.ProfileSettings;
 import box.repository.GreenHouseManagerRepository;
-import box.service.impl.GreenHouseManagerServiceServiceImpl;
+import box.service.impl.GreenHouseManagerServiceImpl;
 import box.web.rest.GreenHouseManagerResource;
 
 import org.slf4j.Logger;

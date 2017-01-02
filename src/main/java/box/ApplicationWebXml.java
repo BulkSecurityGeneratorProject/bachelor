@@ -3,8 +3,7 @@ package box;
 import box.config.DefaultProfileUtil;
 import box.repository.GreenHouseManagerRepository;
 import box.service.AuditEventService;
-import box.service.GreenHouseManagerServiceService;
-import box.service.impl.GreenHouseManagerServiceServiceImpl;
+import box.service.impl.GreenHouseManagerServiceImpl;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -16,6 +15,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.IntervalTask;
 import org.springframework.scheduling.config.ScheduledTaskRegistrar;
+import box.service.GreenHouseManagerService;
 
 /**
  * This is a helper Java class that provides an alternative to creating a
@@ -32,8 +32,8 @@ public class ApplicationWebXml extends SpringBootServletInitializer /*implements
 //        return new GreenHouseManagerRunner();
 //    }
     @Bean
-    public GreenHouseManagerServiceService greenHouseManagerServiceService() {
-        return new GreenHouseManagerServiceServiceImpl();
+    public GreenHouseManagerService greenHouseManagerServiceService() {
+        return new GreenHouseManagerServiceImpl();
     }
     
 //    @Bean 

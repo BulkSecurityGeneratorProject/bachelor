@@ -4,7 +4,6 @@ import box.domain.GreenHouseManager;
 import box.domain.OutSwitch;
 import box.domain.Plant;
 import box.repository.GreenHouseManagerRepository;
-import box.service.GreenHouseManagerServiceService;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import org.joda.time.DateTime;
@@ -17,14 +16,16 @@ import org.springframework.transaction.annotation.Transactional;
 import box.domain.ProfileSettings;
 import box.utils.RaspiPinTools;
 import org.springframework.context.event.EventListener;
+import box.service.GreenHouseManagerService;
 
 @Service
 @Transactional
-public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerServiceService {
+public class GreenHouseManagerServiceImpl implements GreenHouseManagerService {
 
     private static final long START_PROFILE_SETTINGS = 1011L;
     private static final int WRONG_VALUE = -999;
-    private final Logger log = LoggerFactory.getLogger(GreenHouseManagerServiceServiceImpl.class);
+    private final Logger log = LoggerFactory.getLogger(GreenHouseManagerServiceImpl.class);
+    
     @Inject
     private GreenHouseManagerRepository greenHouseManagerRepository;
 
@@ -33,9 +34,7 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
     @PostConstruct
     public void initIt() {
         manager = greenHouseManagerRepository.findOne(START_PROFILE_SETTINGS);
-
     }
-    //tmp
 
     @Transactional(propagation = Propagation.SUPPORTS)
     private void manageHumidity() {
@@ -62,11 +61,13 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
             } else if (plant.getHumidity().getSensorValue() > manager.getSettings().getMaxGroundHumidity()) {
                 wattering = false;
             }
-            //TODO: like lights
-//            if (wattering) {
-//                log.debug("PUMPS:\t" + manager.getGreenHouse().getPumps().turnOn());
-//            } else {
-//                log.debug("PUMPS:\t" + manager.getGreenHouse().getHumidifier().turnOff());
+            for (OutSwitch pump : manager.getGreenHouse().getLights()) {
+                if (wattering) {
+                    pump.turnOn();
+                } else {
+                    pump.turnOff();
+                }
+            }
 //            }
 
         }
@@ -77,10 +78,8 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
         DateTime time = new DateTime();
         boolean lightsOn = true;
         //TODO repair checking conditional
-        if (manager.getSettings().getStartHour() < time.getHourOfDay()
-                && manager.getSettings().getEndHour() > time.getHourOfDay()) {
-            lightsOn = true;
-        } else {
+        if (manager.getSettings().getStartHour() > time.getHourOfDay()
+                && manager.getSettings().getEndHour() < time.getHourOfDay()) {
             lightsOn = false;
         }
 
@@ -96,12 +95,9 @@ public class GreenHouseManagerServiceServiceImpl implements GreenHouseManagerSer
     @Override
     @Scheduled(fixedDelay = 1000)
     public void run() {
-//        while (true) {
-
         manageHumidity();
         managePumps();
         manageLights();
-//        }
 
     }
 

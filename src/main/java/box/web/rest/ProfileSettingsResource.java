@@ -4,8 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import box.domain.ProfileSettings;
 
 import box.repository.ProfileSettingsRepository;
-import box.service.GreenHouseManagerServiceService;
-import box.service.impl.GreenHouseManagerServiceServiceImpl;
+import box.service.impl.GreenHouseManagerServiceImpl;
 import box.web.rest.util.HeaderUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +22,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
+import box.service.GreenHouseManagerService;
 
 /**
  * REST controller for managing ProfileSettings.
@@ -40,7 +40,7 @@ public class ProfileSettingsResource {
     private ApplicationEventPublisher publisher;
 
     @Inject
-    private GreenHouseManagerServiceService greenHouseManagerSericeService;
+    private GreenHouseManagerService greenHouseManagerSericeService;
 
     /**
      * POST /profile-settings : Create a new profileSettings.
@@ -59,7 +59,7 @@ public class ProfileSettingsResource {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("profileSettings", "idexists", "A new profileSettings cannot already have an ID")).body(null);
         }
         ProfileSettings result = profileSettingsRepository.save(profileSettings);
-        publisher.publishEvent(log);
+        publisher.publishEvent(result);
         return ResponseEntity.created(new URI("/api/profile-settings/" + result.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert("profileSettings", result.getId().toString()))
                 .body(result);
