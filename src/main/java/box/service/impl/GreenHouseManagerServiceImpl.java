@@ -17,6 +17,7 @@ import box.domain.ProfileSettings;
 import box.utils.RaspiPinTools;
 import org.springframework.context.event.EventListener;
 import box.service.GreenHouseManagerService;
+import java.util.Iterator;
 
 @Service
 @Transactional
@@ -25,7 +26,7 @@ public class GreenHouseManagerServiceImpl implements GreenHouseManagerService {
     private static final long START_PROFILE_SETTINGS = 1011L;
     private static final int WRONG_VALUE = -999;
     private final Logger log = LoggerFactory.getLogger(GreenHouseManagerServiceImpl.class);
-    
+
     @Inject
     private GreenHouseManagerRepository greenHouseManagerRepository;
 
@@ -34,6 +35,10 @@ public class GreenHouseManagerServiceImpl implements GreenHouseManagerService {
     @PostConstruct
     public void initIt() {
         manager = greenHouseManagerRepository.findOne(START_PROFILE_SETTINGS);
+        //Think about fans
+        for (OutSwitch fan : manager.getGreenHouse().getFans()) {
+            fan.turnOn();
+        }
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
@@ -68,7 +73,6 @@ public class GreenHouseManagerServiceImpl implements GreenHouseManagerService {
                     pump.turnOff();
                 }
             }
-//            }
 
         }
     }
@@ -79,10 +83,13 @@ public class GreenHouseManagerServiceImpl implements GreenHouseManagerService {
         boolean lightsOn = true;
         //TODO repair checking conditional
         if (manager.getSettings().getStartHour() > time.getHourOfDay()
-                && manager.getSettings().getEndHour() < time.getHourOfDay()) {
+                && manager.getSettings().getEndHour() < time.getHourOfDay()
+                || (manager.getSettings().getStartHour() == time.getHourOfDay()
+                && manager.getSettings().getStartMinute() < time.getMinuteOfHour())
+                || (manager.getSettings().getEndHour() == time.getHourOfDay()
+                && manager.getSettings().getEndMinute() > time.getMinuteOfHour())) {
             lightsOn = false;
         }
-
         for (OutSwitch light : manager.getGreenHouse().getLights()) {
             if (lightsOn) {
                 light.turnOn();
