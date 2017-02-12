@@ -17,6 +17,7 @@ import box.domain.ProfileSettings;
 import box.utils.RaspiPinTools;
 import org.springframework.context.event.EventListener;
 import box.service.GreenHouseManagerService;
+import java.io.IOException;
 import java.util.Iterator;
 
 @Service
@@ -44,7 +45,9 @@ public class GreenHouseManagerServiceImpl implements GreenHouseManagerService {
     @Transactional(propagation = Propagation.SUPPORTS)
     private void manageHumidity() {
         double humidity = RaspiPinTools.getHumidity(manager.getGreenHouse().getTemperature().getPinNumber());
-        log.debug("Humidity read: " + humidity + ", minhumidity: " + manager.getSettings().getMinHumidity());
+        //FOR DEBUGING OPITONS
+        double temperature = RaspiPinTools.getTemperature(manager.getGreenHouse().getTemperature().getPinNumber());
+        log.debug("Humidity read: " + humidity + ", temperature: " + temperature);
         if (humidity != WRONG_VALUE) {
             if (humidity < manager.getSettings().getMinHumidity()) {
                 log.debug("HUMIDITY ON");
@@ -60,21 +63,31 @@ public class GreenHouseManagerServiceImpl implements GreenHouseManagerService {
     @Transactional(propagation = Propagation.SUPPORTS)
     private void managePumps() {
         boolean wattering = true;
-        for (Plant plant : manager.getGreenHouse().getPlants()) {
-            if (plant.getHumidity().getSensorValue() < manager.getSettings().getMinGrounHumidity()) {
-                wattering = true;
-            } else if (plant.getHumidity().getSensorValue() > manager.getSettings().getMaxGroundHumidity()) {
-                wattering = false;
-            }
-            for (OutSwitch pump : manager.getGreenHouse().getLights()) {
-                if (wattering) {
-                    pump.turnOn();
-                } else {
-                    pump.turnOff();
+        double soilHumidity;
+        //DEAL WITH THIS FUCKING IOEXCEPTION        
+        try {
+            for (Plant plant : manager.getGreenHouse().getPlants()) {
+                //NOW IT WORKS BUT IF U WANT TO ADD MORE SENSORS RETHINK THIS WHOLE IDEA
+                soilHumidity = RaspiPinTools.getSoilHumidity(1);
+                if (soilHumidity < manager.getSettings().getMinGrounHumidity()) {
+                    wattering = true;
+                } else if (soilHumidity > manager.getSettings().getMaxGroundHumidity()) {
+                    wattering = false;
                 }
-            }
+                for (OutSwitch pump : manager.getGreenHouse().getLights()) {
+                    if (wattering) {
+                        pump.turnOn();
+                    } else {
+                        pump.turnOff();
+                    }
+                }
 
+            }
+        } catch (IOException e) {
+            //AGAIN DEAL IN NORMAL WAY WITH THIS EXCEPTION
+            log.error("IOEXCEPTION FROM SOIL HUMIDITY READ");
         }
+
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
@@ -89,7 +102,7 @@ public class GreenHouseManagerServiceImpl implements GreenHouseManagerService {
             }
         }
     }
-    
+
     //TODO FINISH THIS
     private boolean checkLights() {
         DateTime time = new DateTime();
@@ -106,8 +119,8 @@ public class GreenHouseManagerServiceImpl implements GreenHouseManagerService {
         if (start && manager.getSettings().getStartMinute() < time.getMinuteOfHour()) {
             return false;
         }
-        if (start == end && manager.getSettings().getEndMinute() < time.getMinuteOfHour() || 
-                manager.getSettings().getStartMinute() > time.getMinuteOfHour()) {
+        if (start == end && manager.getSettings().getEndMinute() < time.getMinuteOfHour()
+                || manager.getSettings().getStartMinute() > time.getMinuteOfHour()) {
             return false;
         }
 
