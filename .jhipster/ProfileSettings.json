@@ -1,0 +1,64 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "maxGroundHumidity",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "minGrounHumidity",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "minHumidity",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "maxHumidity",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "maxTemperature",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "minTemperature",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "startHour",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "startMinute",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "endMinute",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "endHour",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20161208112039",
+    "entityTableName": "profile_settings",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "angularJSSuffix": "mySuffix"
+}

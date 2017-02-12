@@ -1,0 +1,68 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "humidity",
+            "otherEntityName": "inSensor",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "greenHouse"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "temperature",
+            "otherEntityName": "inSensor",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "greenHouse"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "humidifier",
+            "otherEntityName": "outSwitch",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "greenHouse"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "plants",
+            "otherEntityName": "plant",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "pumps",
+            "otherEntityName": "outSwitch",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "lights",
+            "otherEntityName": "outSwitch",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "",
+            "relationshipName": "fans",
+            "otherEntityName": "outSwitch",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20161208112041",
+    "entityTableName": "green_house",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "angularJSSuffix": "mySuffix"
+}

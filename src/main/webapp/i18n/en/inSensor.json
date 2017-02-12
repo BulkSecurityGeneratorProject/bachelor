@@ -1,0 +1,23 @@
+{
+    "bachelorApp": {
+        "inSensor" : {
+            "home": {
+                "title": "In Sensors",
+                "createLabel": "Create a new In Sensor",
+                "createOrEditLabel": "Create or edit a In Sensor",
+                "search": "Search for In Sensor"
+            },
+            "created": "A new In Sensor is created with identifier {{ param }}",
+            "updated": "A In Sensor is updated with identifier {{ param }}",
+            "deleted": "A In Sensor is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete In Sensor {{ id }}?"
+            },
+            "detail": {
+                "title": "In Sensor"
+            },
+            "name": "Name",
+            "pinNumber": "Pin Number"
+        }
+    }
+}

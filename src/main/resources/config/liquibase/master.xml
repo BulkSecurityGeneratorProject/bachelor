@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161208112036_added_entity_InSensor.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161208112037_added_entity_OutSwitch.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161208112038_added_entity_Plant.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161208112039_added_entity_ProfileSettings.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161208112040_added_entity_GreenHouseManager.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161208112041_added_entity_GreenHouse.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="classpath:config/liquibase/changelog/20161208112038_added_entity_constraints_Plant.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161208112040_added_entity_constraints_GreenHouseManager.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/20161208112041_added_entity_constraints_GreenHouse.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>

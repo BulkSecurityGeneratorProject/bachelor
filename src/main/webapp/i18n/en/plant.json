@@ -1,0 +1,23 @@
+{
+    "bachelorApp": {
+        "plant" : {
+            "home": {
+                "title": "Plants",
+                "createLabel": "Create a new Plant",
+                "createOrEditLabel": "Create or edit a Plant",
+                "search": "Search for Plant"
+            },
+            "created": "A new Plant is created with identifier {{ param }}",
+            "updated": "A Plant is updated with identifier {{ param }}",
+            "deleted": "A Plant is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Plant {{ id }}?"
+            },
+            "detail": {
+                "title": "Plant"
+            },
+            "name": "Name",
+            "humidity": "Humidity"
+        }
+    }
+}

@@ -1,0 +1,28 @@
+{
+    "bachelorApp": {
+        "greenHouse" : {
+            "home": {
+                "title": "Green Houses",
+                "createLabel": "Create a new Green House",
+                "createOrEditLabel": "Create or edit a Green House",
+                "search": "Search for Green House"
+            },
+            "created": "A new Green House is created with identifier {{ param }}",
+            "updated": "A Green House is updated with identifier {{ param }}",
+            "deleted": "A Green House is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Green House {{ id }}?"
+            },
+            "detail": {
+                "title": "Green House"
+            },
+            "humidity": "Humidity",
+            "temperature": "Temperature",
+            "humidifier": "Humidifier",
+            "plants": "Plants",
+            "pumps": "Pumps",
+            "lights": "Lights",
+            "fans": "Fans"
+        }
+    }
+}

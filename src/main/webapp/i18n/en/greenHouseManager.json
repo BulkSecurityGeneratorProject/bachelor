@@ -1,0 +1,23 @@
+{
+    "bachelorApp": {
+        "greenHouseManager" : {
+            "home": {
+                "title": "Green House Managers",
+                "createLabel": "Create a new Green House Manager",
+                "createOrEditLabel": "Create or edit a Green House Manager",
+                "search": "Search for Green House Manager"
+            },
+            "created": "A new Green House Manager is created with identifier {{ param }}",
+            "updated": "A Green House Manager is updated with identifier {{ param }}",
+            "deleted": "A Green House Manager is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Green House Manager {{ id }}?"
+            },
+            "detail": {
+                "title": "Green House Manager"
+            },
+            "settings": "Settings",
+            "greenHouse": "Green House"
+        }
+    }
+}

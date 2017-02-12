@@ -1,0 +1,31 @@
+{
+    "bachelorApp": {
+        "profileSettings" : {
+            "home": {
+                "title": "Profile Settings",
+                "createLabel": "Create a new Profile Settings",
+                "createOrEditLabel": "Create or edit a Profile Settings",
+                "search": "Search for Profile Settings"
+            },
+            "created": "A new Profile Settings is created with identifier {{ param }}",
+            "updated": "A Profile Settings is updated with identifier {{ param }}",
+            "deleted": "A Profile Settings is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Profile Settings {{ id }}?"
+            },
+            "detail": {
+                "title": "Profile Settings"
+            },
+            "maxGroundHumidity": "Max Ground Humidity",
+            "minGrounHumidity": "Min Groun Humidity",
+            "minHumidity": "Min Humidity",
+            "maxHumidity": "Max Humidity",
+            "maxTemperature": "Max Temperature",
+            "minTemperature": "Min Temperature",
+            "startHour": "Start Hour",
+            "startMinute": "Start Minute",
+            "endMinute": "End Minute",
+            "endHour": "End Hour"
+        }
+    }
+}

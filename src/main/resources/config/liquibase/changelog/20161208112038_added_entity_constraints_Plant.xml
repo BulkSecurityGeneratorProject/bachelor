@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Plant.
+    -->
+    <changeSet id="20161208112038-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="humidity_id"
+                                 baseTableName="plant"
+                                 constraintName="fk_plant_humidity_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="in_sensor"/>
+
+    </changeSet>
+</databaseChangeLog>

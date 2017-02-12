@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+         name="CM1"
+         updateCheck="false"
+         maxBytesLocalHeap="16M">
+
+    <!--
+      This is a default configuration, it is re-configured by the CacheConfiguration Spring Bean, using the
+      properties from the resources/config/*.yml files.
+    -->
+
+    <diskStore path="java.io.tmpdir"/>
+
+    <defaultCache
+            eternal="false"
+            overflowToDisk="false"
+            />
+
+    <cache name="box.domain.User"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="box.domain.Authority"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="box.domain.User.authorities"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="box.domain.PersistentToken"
+           timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="box.domain.User.persistentTokens"
+           timeToLiveSeconds="3600">
+    </cache>
+    
+    <cache name="box.domain.InSensor"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="box.domain.OutSwitch"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="box.domain.Plant"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="box.domain.ProfileSettings"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="box.domain.GreenHouseManager"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="box.domain.GreenHouse"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="box.domain.GreenHouse.plants"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="box.domain.GreenHouse.pumps"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="box.domain.GreenHouse.lights"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <cache name="box.domain.GreenHouse.fans"
+        timeToLiveSeconds="3600">
+    </cache>
+
+    <!-- jhipster-needle-ehcache-add-entry -->
+</ehcache>

@@ -1,0 +1,23 @@
+{
+    "bachelorApp": {
+        "outSwitch" : {
+            "home": {
+                "title": "Out Switches",
+                "createLabel": "Create a new Out Switch",
+                "createOrEditLabel": "Create or edit a Out Switch",
+                "search": "Search for Out Switch"
+            },
+            "created": "A new Out Switch is created with identifier {{ param }}",
+            "updated": "A Out Switch is updated with identifier {{ param }}",
+            "deleted": "A Out Switch is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Out Switch {{ id }}?"
+            },
+            "detail": {
+                "title": "Out Switch"
+            },
+            "name": "Name",
+            "pinNumber": "Pin Number"
+        }
+    }
+}

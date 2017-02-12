@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity GreenHouse.
+    -->
+    <changeSet id="20161208112041-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="humidity_id"
+                                 baseTableName="green_house"
+                                 constraintName="fk_green_house_humidity_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="in_sensor"/>
+
+        <addForeignKeyConstraint baseColumnNames="temperature_id"
+                                 baseTableName="green_house"
+                                 constraintName="fk_green_house_temperature_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="in_sensor"/>
+
+        <addForeignKeyConstraint baseColumnNames="humidifier_id"
+                                 baseTableName="green_house"
+                                 constraintName="fk_green_house_humidifier_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="out_switch"/>
+
+        <addForeignKeyConstraint baseColumnNames="green_houses_id"
+                                 baseTableName="green_house_plants"
+                                 constraintName="fk_green_house_plants_green_houses_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="green_house"/>
+        <addForeignKeyConstraint baseColumnNames="plants_id"
+                                 baseTableName="green_house_plants"
+                                 constraintName="fk_green_house_plants_plants_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="plant"/>
+        
+        <addForeignKeyConstraint baseColumnNames="green_houses_id"
+                                 baseTableName="green_house_pumps"
+                                 constraintName="fk_green_house_pumps_green_houses_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="green_house"/>
+        <addForeignKeyConstraint baseColumnNames="pumps_id"
+                                 baseTableName="green_house_pumps"
+                                 constraintName="fk_green_house_pumps_pumps_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="out_switch"/>
+        
+        <addForeignKeyConstraint baseColumnNames="green_houses_id"
+                                 baseTableName="green_house_lights"
+                                 constraintName="fk_green_house_lights_green_houses_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="green_house"/>
+        <addForeignKeyConstraint baseColumnNames="lights_id"
+                                 baseTableName="green_house_lights"
+                                 constraintName="fk_green_house_lights_lights_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="out_switch"/>
+        
+        <addForeignKeyConstraint baseColumnNames="green_houses_id"
+                                 baseTableName="green_house_fans"
+                                 constraintName="fk_green_house_fans_green_houses_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="green_house"/>
+        <addForeignKeyConstraint baseColumnNames="fans_id"
+                                 baseTableName="green_house_fans"
+                                 constraintName="fk_green_house_fans_fans_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="out_switch"/>
+        
+    </changeSet>
+</databaseChangeLog>

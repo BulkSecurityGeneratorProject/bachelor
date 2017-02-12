@@ -1,0 +1,28 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "settings",
+            "otherEntityName": "profileSettings",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "greenHouseManager"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "greenHouse",
+            "otherEntityName": "greenHouse",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "greenHouseManager"
+        }
+    ],
+    "fields": [],
+    "changelogDate": "20161208112040",
+    "entityTableName": "green_house_manager",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "angularJSSuffix": "mySuffix"
+}

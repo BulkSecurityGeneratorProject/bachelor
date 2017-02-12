@@ -1,0 +1,12 @@
+version: '2'
+services:
+    bachelor-postgresql:
+        container_name: bachelor-postgresql
+        image: postgres:9.5.4
+        # volumes:
+        #     - ~/volumes/jhipster/bachelor/postgresql/:/var/lib/postgresql/
+        environment:
+            - POSTGRES_USER=bachelor
+            - POSTGRES_PASSWORD=
+        ports:
+            - 5432:5432
